@@ -1,0 +1,59 @@
+name: Front CI (Lint & Security)
+
+on:
+  push:
+    paths:
+      - "front/**"
+      - ".github/workflows/front-ci.yml"
+  pull_request:
+    paths:
+      - "front/**"
+      - ".github/workflows/front-ci.yml"
+
+defaults:
+  run:
+    working-directory: front
+
+jobs:
+  lint:
+    name: Lint HTML, CSS & JS
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install dependencies (if package.json exists)
+        run: |
+          if [ -f package.json ]; then
+            npm ci
+          fi
+
+      - name: Lint HTML
+        run: npx --yes htmlhint "**/*.html"
+
+      - name: Lint CSS
+        run: npx --yes stylelint "**/*.css" --allow-empty-input
+
+      - name: Lint JS
+        run: npx --yes eslint "**/*.js" --no-warn-ignored
+
+  security:
+    name: Security Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Scan secrets & misconfigurations (Trivy)
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: "fs"
+          scan-ref: "front"
+          scanners: "vuln,secret,misconfig"
+          exit-code: "1"
+          severity: "HIGH,CRITICAL"
