@@ -2,7 +2,7 @@
 
 return [
     'routes' => [
-        ['GET', 'apprentissage', 'apprentissage/MainApprentissageController@index'],
-        ['GET', 'apprentissage/query/:queryIndex', 'apprentissage/MainApprentissageController@query'],
+        ['GET', 'poursuiteetude', 'poursuiteetude/MainPoursuiteetudeController@index'],
+        ['GET', 'poursuiteetude/query/:queryIndex', 'poursuiteetude/MainPoursuiteetudeController@query'],
     ],
 ];
