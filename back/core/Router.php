@@ -12,7 +12,7 @@ use Exception;
  */
 class Router
 {
-    private $routes = [];
+    private $routes = [];²
     private $prefix;
 
     /**
@@ -70,7 +70,7 @@ class Router
                 continue;
             }
 
-            $pattern = preg_replace('/\{[a-zA-Z0-9_]+\}/', '([^/]+)', $route['uri']);
+            $pattern = preg_replace('/(?:\{[a-zA-Z0-9_]+\}|:[a-zA-Z0-9_]+)/', '([^/]+)', $route['uri']);
             $pattern = '#^' . $pattern . '$#';
 
             if (preg_match($pattern, $path, $matches)) {
