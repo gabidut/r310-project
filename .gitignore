@@ -3,3 +3,6 @@
 *.iml
 *.log
 *.tmp
+
+
+node_modules/
