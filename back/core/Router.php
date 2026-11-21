@@ -12,7 +12,7 @@ use Exception;
  */
 class Router
 {
-    private $routes = [];²
+    private $routes = [];
     private $prefix;
 
     /**
