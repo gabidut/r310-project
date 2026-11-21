@@ -1,0 +1,70 @@
+name: Back CI (PHP Lint & Security)
+
+on:
+  push:
+    paths:
+      - "back/**"
+      - ".github/workflows/back-ci.yml"
+  pull_request:
+    paths:
+      - "back/**"
+      - ".github/workflows/back-ci.yml"
+
+defaults:
+  run:
+    working-directory: back
+
+jobs:
+  lint-and-analyze:
+    name: PHP Syntax & Static Analysis
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.3"
+          tools: composer, phpstan
+
+      - name: PHP Syntax Check (php -l)
+        run: find . -type f -name "*.php" -not -path "./vendor/*" -print0 | xargs -0 -n1 php -l
+
+      - name: Run PHPStan (if phpstan.neon exists)
+        run: |
+          if [ -f phpstan.neon ] || [ -f phpstan.neon.dist ]; then
+            phpstan analyse
+          else
+            echo "No phpstan config found, skipping static analysis."
+          fi
+
+  security:
+    name: PHP & Repository Security Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup PHP & Composer
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.3"
+          tools: composer
+
+      - name: Composer Security Audit (if composer.lock exists)
+        run: |
+          if [ -f composer.lock ]; then
+            composer audit
+          else
+            echo "No composer.lock found, skipping composer audit."
+          fi
+
+      - name: Scan secrets & misconfigurations (Trivy)
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: "fs"
+          scan-ref: "back"
+          scanners: "vuln,secret,misconfig"
+          exit-code: "1"
+          severity: "HIGH,CRITICAL"
