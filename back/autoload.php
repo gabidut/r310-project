@@ -1,25 +1,83 @@
 <?php
 
+use core\Router;
+
+$GLOBALS['moduleManifests'] = [];
+
 spl_autoload_register(function ($class) {
-    $relativePath = str_replace('\\', '/', $class) . '.php';
-    if (file_exists(__DIR__ . '/' . $relativePath)) {
-        require_once __DIR__ . '/' . $relativePath;
+    $normalized = str_replace('\\', '/', $class);
+
+    // namespace
+    $directPath = __DIR__ . '/' . $normalized . '.php';
+    if (file_exists($directPath)) {
+        require_once $directPath;
         return;
     }
 
-    $directories = [
-        'core/',
-        'db/',
-        'controllers/',
-        'models/',
-        'resources/'
-    ];
+    // classes de modules
+    // Ex: modules/apprentissage/controllers/MainApprentissageController
+    if (preg_match('#^modules/([^/]+)/(controllers|models|resources)/([^/]+)$#', $normalized, $m)) {
+        $modulePath = __DIR__ . '/modules/' . strtolower($m[1]) . '/' . $m[2] . '/' . $m[3] . '.php';
+        if (file_exists($modulePath)) {
+            require_once $modulePath;
+            return;
+        }
+    }
 
-    foreach ($directories as $directory) {
-        $filePath = __DIR__ . '/' . $directory . $class . '.php';
-        if (file_exists($filePath)) {
-            require_once $filePath;
+    // dossiers plats
+    $shortClass = basename($normalized);
+    foreach (['core/', 'db/', 'controllers/', 'models/', 'resources/'] as $dir) {
+        $fallback = __DIR__ . '/' . $dir . $shortClass . '.php';
+        if (file_exists($fallback)) {
+            require_once $fallback;
             return;
         }
     }
 });
+
+function loadModules(Router $router): void
+{
+    $modulesDir = __DIR__ . '/modules';
+    if (!is_dir($modulesDir)) {
+        return;
+    }
+
+    foreach (scandir($modulesDir) as $entry) {
+        if ($entry === '.' || $entry === '..') {
+            continue;
+        }
+
+        $moduleDir = $modulesDir . '/' . $entry;
+        $manifestFile = $moduleDir . '/index.php';
+
+        if (!is_dir($moduleDir) || !file_exists($manifestFile)) {
+            continue;
+        }
+
+        $manifest = require $manifestFile;
+        if (!is_array($manifest)) {
+            continue;
+        }
+
+        // auto-découverte des contrôleurs/modèles si non listés explicitement
+        if (empty($manifest['controllers']) && is_dir($moduleDir . '/controllers')) {
+            foreach (glob($moduleDir . '/controllers/*.php') as $file) {
+                $manifest['controllers'][] = pathinfo($file, PATHINFO_FILENAME);
+            }
+        }
+        if (empty($manifest['models']) && is_dir($moduleDir . '/models')) {
+            foreach (glob($moduleDir . '/models/*.php') as $file) {
+                $manifest['models'][] = pathinfo($file, PATHINFO_FILENAME);
+            }
+        }
+
+        $GLOBALS['moduleManifests'][$entry] = $manifest;
+
+        if (!empty($manifest['routes']) && is_array($manifest['routes'])) {
+            foreach ($manifest['routes'] as $routeDef) {
+                [$method, $uri, $action] = $routeDef;
+                $router->addRoute($uri, $action, $method);
+            }
+        }
+    }
+}

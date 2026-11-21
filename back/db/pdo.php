@@ -1,6 +1,7 @@
 <?php
 
 $envPath = __DIR__ . '/../.env';
+require_once __DIR__ . '/Database.php';
 
 if (file_exists($envPath)) {
     $lines = file($envPath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
