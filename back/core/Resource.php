@@ -2,6 +2,16 @@
 
 namespace core;
 
+/**
+ * Classe de base abstraite pour le formatage et l'envoi des réponses JSON de l'API
+ *
+ * Permet de découpler la structure interne de la base de données du format public
+ * exposé au client (renommage de clés, masquage de colonnes sensibles) et gère
+ * l'envoi des réponses HTTP JSON (élément unique, collection ou erreur).
+ *
+ * @author  Noah Quaghebeur
+ * @version 1.0
+ */
 abstract class Resource
 {
     protected array $resource;
