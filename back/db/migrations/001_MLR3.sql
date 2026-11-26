@@ -1,6 +1,3 @@
-DROP DATABASE IF EXISTS MLR3;
-
-CREATE DATABASE IF NOT EXISTS MLR3;
 USE MLR3;
 # -----------------------------------------------------------------------------
 #       TABLE : TD_CHECKLIST

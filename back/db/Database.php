@@ -52,6 +52,7 @@ class Database
         ];
 
         self::$PDO = new PDO($dsn, $_ENV['DB_USER'], $_ENV['DB_PASS'], $options);
+        $this->migrate();
     }
 
     /**
