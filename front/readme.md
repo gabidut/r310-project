@@ -110,3 +110,12 @@ const { data: user, ok } = await window.apiHelper.safe(() => window.apiHelper.ge
 // Redéfinir manuellement l'URL de l'API si nécessaire
 window.apiHelper.setBaseUrl("http://localhost:8000", true);
 ```
+
+---
+
+## 5. Composants UI (Boutons, Icônes & Champs de texte)
+
+Une bibliothèque de composants CSS conformes aux designs SVG du projet et compatible avec [Bootstrap Icons](https://icons.getbootstrap.com/) est disponible dans `front/css/`.
+
+Consultez le guide complet des classes CSS et exemples d'intégration :
+👉 **[Documentation des composants UI](README-UI.md)** (ou dans [front/css/README.md](css/README.md)).
