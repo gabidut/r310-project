@@ -5,7 +5,6 @@ const app = document.getElementById("app");
 const ROOT_PATH = new URL("../../", import.meta.url).pathname.replace(/\/$/, "");
 
 document.addEventListener("DOMContentLoaded", async () => {
-    // 1. Attendre explicitement la fin du chargement de tous les modules
     await modulesReady;
 
     const router = new Router();
