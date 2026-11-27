@@ -4,5 +4,6 @@
 *.log
 *.tmp
 back/.env
+back/db/.migrations_cache
 
 **/node_modules/

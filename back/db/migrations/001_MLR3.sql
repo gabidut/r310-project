@@ -1,4 +1,3 @@
-USE MLR3;
 # -----------------------------------------------------------------------------
 #       TABLE : TD_CHECKLIST
 # -----------------------------------------------------------------------------
@@ -1497,7 +1496,6 @@ ALTER TABLE PARTICIPE
 
 
 SET NAMES utf8mb4;
-USE MLR3;
 
 -- =============================================================================
 --  JEU DE DONNEES DE DEV - base MLR3 (57 tables)
@@ -1514,7 +1512,7 @@ USE MLR3;
 
 -- ROL_ID = [categorie][numero du role dans la categorie sur 2 chiffres]
 -- Categories : 1 Systeme, 2 Administratif, 3 Administration, 4 Autre, 5 Enseignant, 6 Etudiant, 7 Externe
-INSERT INTO TD_ROLE (ROL_ID, ROL_LIBELLE) VALUES
+INSERT IGNORE INTO TD_ROLE (ROL_ID, ROL_LIBELLE) VALUES
 ('101', 'Administrateur de la plateforme'),
 ('201', 'Resp. validation des heures'),
 ('301', 'Chef de département'),
@@ -1538,64 +1536,64 @@ INSERT INTO TD_ROLE (ROL_ID, ROL_LIBELLE) VALUES
 ('705', 'Representant entreprise stage');
 
 -- PRO_ID = BUINFO[annee 1 a 3]A
-INSERT INTO TD_PROMO (PRO_ID, PRO_DATE_DEBUT, PRO_DATE_FIN) VALUES
+INSERT IGNORE INTO TD_PROMO (PRO_ID, PRO_DATE_DEBUT, PRO_DATE_FIN) VALUES
 ('BUINFO1A', '2026-09-01', '2027-06-30'),
 ('BUINFO2A', '2026-09-01', '2027-06-30'),
 ('BUINFO3A', '2026-09-01', '2027-06-30');
 
 -- GRP_ID = TD[numero de TD][numero de TP], ex. TD21 = TD 2, TP 1
-INSERT INTO TD_GROUPE (GRP_ID, PRO_ID, GRP_LIBELLE) VALUES
+INSERT IGNORE INTO TD_GROUPE (GRP_ID, PRO_ID, GRP_LIBELLE) VALUES
 ('TD11', 'BUINFO1A', 'TD1 - TP1'),
 ('TD12', 'BUINFO1A', 'TD1 - TP2'),
 ('TD21', 'BUINFO1A', 'TD2 - TP1');
 
-INSERT INTO TD_ENTREPRISE (ENT_ID, ENT_NOM, ENT_TELEPHONE, ENT_VILLE, ENT_ADRESSE, ENT_CODE_POSTAL, ENT_REGLEMENT_INTERIEUR) VALUES
+INSERT IGNORE INTO TD_ENTREPRISE (ENT_ID, ENT_NOM, ENT_TELEPHONE, ENT_VILLE, ENT_ADRESSE, ENT_CODE_POSTAL, ENT_REGLEMENT_INTERIEUR) VALUES
 ('ENT_01', 'Norman Tech', '0231000001', 'Caen', '12 rue des Quais', '14000', 'reglement_norman_tech.pdf'),
 ('ENT_02', 'Calvados Data', '0231000002', 'Caen', '5 avenue de la Liberte', '14000', 'reglement_calvados_data.pdf'),
 ('ENT_03', 'Cotentin Soft', '0233000003', 'Cherbourg', '8 quai de Caligny', '50100', 'reglement_cotentin_soft.pdf'),
 ('ENT_04', 'Rouen Digital', '0235000004', 'Rouen', '27 rue Jeanne d Arc', '76000', 'reglement_rouen_digital.pdf'),
 ('ENT_05', 'Manche Cyber', '0233000005', 'Saint-Lo', '3 place du Champ de Mars', '50000', 'reglement_manche_cyber.pdf');
 
-INSERT INTO TD_TYPE_EVAL (TYE_ID, TYE_LIBELLE) VALUES
+INSERT IGNORE INTO TD_TYPE_EVAL (TYE_ID, TYE_LIBELLE) VALUES
 ('TYE_01', 'Controle continu'),
 ('TYE_02', 'Examen final'),
 ('TYE_03', 'TP note'),
 ('TYE_04', 'Projet'),
 ('TYE_05', 'Oral');
 
-INSERT INTO TD_TYPE_BDE (TYB_ID, TYB_LIBELLE) VALUES
+INSERT IGNORE INTO TD_TYPE_BDE (TYB_ID, TYB_LIBELLE) VALUES
 ('TYB_01', 'Evenement'),
 ('TYB_02', 'Annonce'),
 ('TYB_03', 'Partenariat'),
 ('TYB_04', 'Soiree');
 
-INSERT INTO TD_GRAVITE (GRA_ID, GRA_LIBELLE) VALUES
+INSERT IGNORE INTO TD_GRAVITE (GRA_ID, GRA_LIBELLE) VALUES
 ('GRA_1', 'Mineure'),
 ('GRA_2', 'Moderee'),
 ('GRA_3', 'Grave'),
 ('GRA_4', 'Tres grave');
 
-INSERT INTO TD_TYPE_COMPTE_RENDU (TYC_ID, TYC_LIBELLE) VALUES
+INSERT IGNORE INTO TD_TYPE_COMPTE_RENDU (TYC_ID, TYC_LIBELLE) VALUES
 ('TYC_01', 'Reunion pedagogique'),
 ('TYC_02', 'Conseil de classe'),
 ('TYC_03', 'Jury'),
 ('TYC_04', 'Reunion administrative');
 
-INSERT INTO TD_TYPE_DECISION (TYD_ID, TYD_LIBELLE) VALUES
+INSERT IGNORE INTO TD_TYPE_DECISION (TYD_ID, TYD_LIBELLE) VALUES
 ('TYD_01', 'Validation'),
 ('TYD_02', 'Avertissement'),
 ('TYD_03', 'Redoublement'),
 ('TYD_04', 'Admission'),
 ('TYD_05', 'Amenagement');
 
-INSERT INTO TD_SUJET_QUESTION (SUJ_ID, SUJ_LIBELLE) VALUES
+INSERT IGNORE INTO TD_SUJET_QUESTION (SUJ_ID, SUJ_LIBELLE) VALUES
 ('SUJ_01', 'Admission'),
 ('SUJ_02', 'Scolarite'),
 ('SUJ_03', 'Alternance'),
 ('SUJ_04', 'Vie etudiante'),
 ('SUJ_05', 'Autre');
 
-INSERT INTO TD_KEYWORD (KEY_ID, KEY_WORD) VALUES
+INSERT IGNORE INTO TD_KEYWORD (KEY_ID, KEY_WORD) VALUES
 ('KEY_01', 'informatique'),
 ('KEY_02', 'cybersecurite'),
 ('KEY_03', 'data'),
@@ -1607,7 +1605,7 @@ INSERT INTO TD_KEYWORD (KEY_ID, KEY_WORD) VALUES
 ('KEY_09', 'international'),
 ('KEY_10', 'developpement');
 
-INSERT INTO TD_ETAPE_CHECKLIST (ETA_ID, ETA_LIBELLE, ETA_DESCRIPTION) VALUES
+INSERT IGNORE INTO TD_ETAPE_CHECKLIST (ETA_ID, ETA_LIBELLE, ETA_DESCRIPTION) VALUES
 ('ETA_01', 'Piece d identite', 'Fournir une copie recto-verso de la carte d identite ou du passeport.'),
 ('ETA_02', 'CV a jour', 'Deposer un CV de moins de 6 mois.'),
 ('ETA_03', 'RIB', 'Fournir un RIB au nom du vacataire pour le paiement.'),
@@ -1620,133 +1618,133 @@ INSERT INTO TD_ETAPE_CHECKLIST (ETA_ID, ETA_LIBELLE, ETA_DESCRIPTION) VALUES
 -- -----------------------------------------------------------------------------
 
 -- 101  Système / Administrateur de la plateforme
-INSERT INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
+INSERT IGNORE INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
 ('PER_SYS_01', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Martin', 'Claire', 'Caen', '1969-12-30', 'claire.martin@univ-caen.fr', '0600000001'),
 ('PER_SYS_02', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Bernard', 'Thomas', 'Lisieux', '1977-05-04', 'thomas.bernard@univ-caen.fr', '0600000002'),
 ('PER_SYS_03', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Petit', 'Sophie', 'Bayeux', '1975-01-06', 'sophie.petit@univ-caen.fr', '0600000003');
 
 -- 201  Administratif / Resp. validation des heures
-INSERT INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
-('PER_RVH_01', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm' 'Durand', 'Jean', 'Deauville', '1969-08-07', 'jean.durand@univ-caen.fr', '0600000004'),
+INSERT IGNORE INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
+('PER_RVH_01', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Durand', 'Jean', 'Deauville', '1969-08-07', 'jean.durand@univ-caen.fr', '0600000004'),
 ('PER_RVH_02', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Leroy', 'Isabelle', 'Rouen', '1989-06-19', 'isabelle.leroy@univ-caen.fr', '0600000005'),
 ('PER_RVH_03', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Moreau', 'Marc', 'Evreux', '1991-06-28', 'marc.moreau@univ-caen.fr', '0600000006');
 
 -- 301  Administration / Chef de département
-INSERT INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
+INSERT IGNORE INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
 ('PER_CHD_01', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Simon', 'Laurent', 'Caen', '1966-06-05', 'laurent.simon@univ-caen.fr', '0600000007'),
 ('PER_CHD_02', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Laurent', 'Nathalie', 'Lisieux', '1969-03-16', 'nathalie.laurent@univ-caen.fr', '0600000008'),
 ('PER_CHD_03', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Lefebvre', 'Olivier', 'Cherbourg', '1975-06-09', 'olivier.lefebvre@univ-caen.fr', '0600000009');
 
 -- 302  Administration / Personnel administratif
-INSERT INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
+INSERT IGNORE INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
 ('PER_PAD_01', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Garcia', 'Julien', 'Cherbourg', '1966-03-11', 'julien.garcia@univ-caen.fr', '0600000010'),
 ('PER_PAD_02', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Roux', 'Camille', 'Saint-Lo', '1973-12-02', 'camille.roux@univ-caen.fr', '0600000011'),
 ('PER_PAD_03', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Fournier', 'Antoine', 'Evreux', '1989-06-12', 'antoine.fournier@univ-caen.fr', '0600000012');
 
 -- 303  Administration / Personnel de la DSI
-INSERT INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
+INSERT IGNORE INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
 ('PER_DSI_01', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Girard', 'Lucas', 'Falaise', '1974-11-21', 'lucas.girard@univ-caen.fr', '0600000013'),
 ('PER_DSI_02', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Bonnet', 'Emma', 'Vire', '1991-06-08', 'emma.bonnet@univ-caen.fr', '0600000014'),
 ('PER_DSI_03', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Dupuis', 'Hugo', 'Cabourg', '1965-04-17', 'hugo.dupuis@univ-caen.fr', '0600000015');
 
 -- 304  Administration / Secrétaire de département
-INSERT INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
+INSERT IGNORE INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
 ('PER_SEC_01', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Lambert', 'Lea', 'Saint-Lo', '1972-02-29', 'lea.lambert@univ-caen.fr', '0600000016'),
 ('PER_SEC_02', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Fontaine', 'Nathan', 'Alencon', '1983-12-17', 'nathan.fontaine@univ-caen.fr', '0600000017'),
 ('PER_SEC_03', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Rousseau', 'Chloe', 'Bayeux', '1977-06-19', 'chloe.rousseau@univ-caen.fr', '0600000018');
 
 -- 305  Administration / Representant des vacataires
-INSERT INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
+INSERT IGNORE INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
 ('PER_RVC_01', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Vincent', 'Maxime', 'Cabourg', '1974-08-29', 'maxime.vincent@univ-caen.fr', '0600000019'),
 ('PER_RVC_02', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Muller', 'Manon', 'Rouen', '1980-02-06', 'manon.muller@univ-caen.fr', '0600000020'),
 ('PER_RVC_03', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Faure', 'Alexandre', 'Evreux', '1969-02-28', 'alexandre.faure@univ-caen.fr', '0600000021');
 
 -- 401  Autre / Utilisateur connecté
-INSERT INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
+INSERT IGNORE INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
 ('PER_UCO_01', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Andre', 'Sarah', 'Alencon', '1969-05-04', 'sarah.andre@mail.fr', '0600000022'),
 ('PER_UCO_02', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Mercier', 'Paul', 'Honfleur', '1980-06-06', 'paul.mercier@mail.fr', '0600000023'),
 ('PER_UCO_03', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Blanc', 'Ines', 'Cabourg', '1976-11-12', 'ines.blanc@mail.fr', '0600000024');
 
 -- 501  Enseignant / Directeur des études
-INSERT INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
+INSERT IGNORE INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
 ('PER_DET_01', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Guerin', 'Pierre', 'Saint-Lo', '1966-12-13', 'pierre.guerin@univ-caen.fr', '0600000025'),
 ('PER_DET_02', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Boyer', 'Marie', 'Cherbourg', '1985-08-11', 'marie.boyer@univ-caen.fr', '0600000026'),
 ('PER_DET_03', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Garnier', 'Nicolas', 'Evreux', '1970-08-08', 'nicolas.garnier@univ-caen.fr', '0600000027');
 
 -- 502  Enseignant / Enseignant titulaire
-INSERT INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
+INSERT IGNORE INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
 ('PER_TIT_01', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Chevalier', 'Julie', 'Cherbourg', '1968-07-15', 'julie.chevalier@univ-caen.fr', '0600000028'),
 ('PER_TIT_02', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Legrand', 'David', 'Coutances', '1978-02-25', 'david.legrand@univ-caen.fr', '0600000029'),
 ('PER_TIT_03', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Gauthier', 'Celine', 'Honfleur', '1981-03-23', 'celine.gauthier@univ-caen.fr', '0600000030');
 
 -- 503  Enseignant / Enseignant vacataire
-INSERT INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
+INSERT IGNORE INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
 ('PER_VAC_01', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Perrin', 'Francois', 'Saint-Lo', '1973-08-17', 'francois.perrin@mail.fr', '0600000031'),
 ('PER_VAC_02', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Robin', 'Anne', 'Caen', '1968-02-14', 'anne.robin@mail.fr', '0600000032'),
 ('PER_VAC_03', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Clement', 'Eric', 'Cabourg', '1975-03-23', 'eric.clement@mail.fr', '0600000033');
 
 -- 504  Enseignant / Representant de stage enseignant
-INSERT INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
+INSERT IGNORE INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
 ('PER_RST_01', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Morin', 'Sandrine', 'Rouen', '1977-12-25', 'sandrine.morin@univ-caen.fr', '0600000034'),
 ('PER_RST_02', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Nicolas', 'Pascal', 'Coutances', '1975-06-12', 'pascal.nicolas@univ-caen.fr', '0600000035'),
 ('PER_RST_03', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Henry', 'Valerie', 'Evreux', '1969-07-13', 'valerie.henry@univ-caen.fr', '0600000036');
 
 -- 601  Étudiant / Étudiant
-INSERT INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
+INSERT IGNORE INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
 ('PER_ETU_01', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Roussel', 'Stephane', 'Falaise', '2004-07-23', 'stephane.roussel@etu.unicaen.fr', '0600000037'),
 ('PER_ETU_02', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Mathieu', 'Laura', 'Coutances', '2006-07-25', 'laura.mathieu@etu.unicaen.fr', '0600000038'),
 ('PER_ETU_03', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Masson', 'Kevin', 'Bayeux', '2005-01-17', 'kevin.masson@etu.unicaen.fr', '0600000039');
 
 -- 602  Étudiant / Étudiant apprenti
-INSERT INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
+INSERT IGNORE INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
 ('PER_APP_01', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Marchand', 'Pauline', 'Alencon', '2005-01-28', 'pauline.marchand@etu.unicaen.fr', '0600000040'),
 ('PER_APP_02', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Duval', 'Romain', 'Deauville', '2004-03-05', 'romain.duval@etu.unicaen.fr', '0600000041'),
 ('PER_APP_03', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Denis', 'Elodie', 'Saint-Lo', '2004-06-30', 'elodie.denis@etu.unicaen.fr', '0600000042');
 
 -- 603  Étudiant / Étudiant BDE
-INSERT INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
+INSERT IGNORE INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
 ('PER_BDE_01', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Dumont', 'Mathieu', 'Deauville', '2006-10-31', 'mathieu.dumont@etu.unicaen.fr', '0600000043'),
 ('PER_BDE_02', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Lemaire', 'Aurelie', 'Honfleur', '2003-05-27', 'aurelie.lemaire@etu.unicaen.fr', '0600000044'),
 ('PER_BDE_03', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Noel', 'Quentin', 'Bayeux', '2006-07-24', 'quentin.noel@etu.unicaen.fr', '0600000045');
 
 -- 604  Étudiant / Étudiant élu
-INSERT INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
+INSERT IGNORE INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
 ('PER_ELU_01', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Meyer', 'Justine', 'Saint-Lo', '2005-12-29', 'justine.meyer@etu.unicaen.fr', '0600000046'),
 ('PER_ELU_02', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Dufour', 'Adrien', 'Bayeux', '2004-05-16', 'adrien.dufour@etu.unicaen.fr', '0600000047'),
 ('PER_ELU_03', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Meunier', 'Marine', 'Evreux', '2005-08-04', 'marine.meunier@etu.unicaen.fr', '0600000048');
 
 -- 701  Externe / Étudiant Ambassadeur
-INSERT INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
+INSERT IGNORE INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
 ('PER_AMB_01', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Brun', 'Theo', 'Deauville', '2004-07-06', 'theo.brun@etu.unicaen.fr', '0600000049'),
 ('PER_AMB_02', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Blanchard', 'Clara', 'Cherbourg', '2006-11-10', 'clara.blanchard@etu.unicaen.fr', '0600000050'),
 ('PER_AMB_03', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Giraud', 'Louis', 'Deauville', '2004-03-25', 'louis.giraud@etu.unicaen.fr', '0600000051');
 
 -- 702  Externe / Personnel CROUS
-INSERT INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
+INSERT IGNORE INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
 ('PER_CRO_01', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Joly', 'Alice', 'Coutances', '1979-07-20', 'alice.joly@crous-normandie.fr', '0600000052'),
 ('PER_CRO_02', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Riviere', 'Jules', 'Lisieux', '1967-07-06', 'jules.riviere@crous-normandie.fr', '0600000053'),
 ('PER_CRO_03', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Lucas', 'Lena', 'Cabourg', '1966-06-10', 'lena.lucas@crous-normandie.fr', '0600000054');
 
 -- 703  Externe / Personnel SSE
-INSERT INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
+INSERT IGNORE INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
 ('PER_SSE_01', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Brunet', 'Arthur', 'Evreux', '1979-02-25', 'arthur.brunet@univ-caen.fr', '0600000055'),
 ('PER_SSE_02', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Gaillard', 'Zoe', 'Rouen', '1977-01-04', 'zoe.gaillard@univ-caen.fr', '0600000056'),
 ('PER_SSE_03', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Barbier', 'Victor', 'Honfleur', '1974-06-19', 'victor.barbier@univ-caen.fr', '0600000057');
 
 -- 704  Externe / Utilisateur non connecté
-INSERT INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
+INSERT IGNORE INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
 ('PER_UNC_01', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Arnaud', 'Margaux', 'Lisieux', '1979-02-12', 'margaux.arnaud@mail.fr', '0600000058'),
 ('PER_UNC_02', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Martinez', 'Gabriel', 'Evreux', '1987-05-25', 'gabriel.martinez@mail.fr', '0600000059'),
 ('PER_UNC_03', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Gerard', 'Eva', 'Bayeux', '1985-08-01', 'eva.gerard@mail.fr', '0600000060');
 
 -- 705  Externe / Representant entreprise stage
-INSERT INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
+INSERT IGNORE INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
 ('PER_REP_01', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Colin', 'Raphael', 'Bayeux', '1976-11-18', 'raphael.colin@normantech.fr', '0600000061'),
 ('PER_REP_02', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Hamon', 'Jade', 'Saint-Lo', '1976-01-24', 'jade.hamon@calvadosdata.fr', '0600000062'),
 ('PER_REP_03', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Lopez', 'Leo', 'Cherbourg', '1990-03-08', 'leo.lopez@cotentin.fr', '0600000063');
 
 -- 1 role par utilisateur, 3 utilisateurs par role
-INSERT INTO TD_ATTRIBUE (PER_ID, ROL_ID) VALUES
+INSERT IGNORE INTO TD_ATTRIBUE (PER_ID, ROL_ID) VALUES
 ('PER_SYS_01', '101'),
 ('PER_SYS_02', '101'),
 ('PER_SYS_03', '101'),
@@ -1812,7 +1810,7 @@ INSERT INTO TD_ATTRIBUE (PER_ID, ROL_ID) VALUES
 ('PER_REP_03', '705');
 
 -- Roles Systeme / Administratif / Administration
-INSERT INTO TD_ADMINISTRATION (PER_ID, ADM_DATE_EMBAUCHE) VALUES
+INSERT IGNORE INTO TD_ADMINISTRATION (PER_ID, ADM_DATE_EMBAUCHE) VALUES
 ('PER_SYS_01', '2011-07-24'),
 ('PER_SYS_02', '2022-06-03'),
 ('PER_SYS_03', '2018-10-11'),
@@ -1836,7 +1834,7 @@ INSERT INTO TD_ADMINISTRATION (PER_ID, ADM_DATE_EMBAUCHE) VALUES
 ('PER_RVC_03', '2015-02-19');
 
 -- Directeurs des etudes, titulaires, responsables de stage ET vacataires (FK de TD_VACATAIRE)
-INSERT INTO TD_ENSEIGNANT (PER_ID, ENS_DATE_EMBAUCHE) VALUES
+INSERT IGNORE INTO TD_ENSEIGNANT (PER_ID, ENS_DATE_EMBAUCHE) VALUES
 ('PER_DET_01', '2017-01-15'),
 ('PER_DET_02', '2005-02-02'),
 ('PER_DET_03', '2012-04-18'),
@@ -1850,18 +1848,18 @@ INSERT INTO TD_ENSEIGNANT (PER_ID, ENS_DATE_EMBAUCHE) VALUES
 ('PER_VAC_02', '2020-09-24'),
 ('PER_VAC_03', '2024-06-25');
 
-INSERT INTO TD_VACATAIRE (PER_ID, VAC_STATUT_PRO, VAC_TAUX_HORAIRE) VALUES
+INSERT IGNORE INTO TD_VACATAIRE (PER_ID, VAC_STATUT_PRO, VAC_TAUX_HORAIRE) VALUES
 ('PER_VAC_01', 'Salarie', 45.5),
 ('PER_VAC_02', 'Auto-entrepreneur', 52.0),
 ('PER_VAC_03', 'Retraite', 41.2);
 
-INSERT INTO TD_REPRESENTANT (PER_ID, ENT_ID) VALUES
+INSERT IGNORE INTO TD_REPRESENTANT (PER_ID, ENT_ID) VALUES
 ('PER_REP_01', 'ENT_01'),
 ('PER_REP_02', 'ENT_02'),
 ('PER_REP_03', 'ENT_03');
 
 -- Etudiants, apprentis, BDE et elus
-INSERT INTO TD_ETUDIANT (PER_ID, GRP_ID) VALUES
+INSERT IGNORE INTO TD_ETUDIANT (PER_ID, GRP_ID) VALUES
 ('PER_ETU_01', 'TD11'),
 ('PER_ETU_02', 'TD12'),
 ('PER_ETU_03', 'TD21'),
@@ -1876,18 +1874,18 @@ INSERT INTO TD_ETUDIANT (PER_ID, GRP_ID) VALUES
 ('PER_ELU_03', 'TD21');
 
 -- Stagiaires = les 3 etudiants du role Etudiant ; PER_ID_1 = responsable de stage, PER_ID_2 = responsable entreprise
-INSERT INTO TD_STAGIAIRE (PER_ID, PER_ID_1, PER_ID_2, STA_CONVENTION, STA_STATUT, STA_DATE_DEBUT, STA_DATE_FIN) VALUES
+INSERT IGNORE INTO TD_STAGIAIRE (PER_ID, PER_ID_1, PER_ID_2, STA_CONVENTION, STA_STATUT, STA_DATE_DEBUT, STA_DATE_FIN) VALUES
 ('PER_ETU_01', 'PER_RST_01', 'PER_REP_01', 'convention_stage_01.pdf', 'En cours', '2027-04-01', '2027-06-30'),
 ('PER_ETU_02', 'PER_RST_02', 'PER_REP_02', 'convention_stage_02.pdf', 'Valide', '2027-04-15', '2027-07-15'),
 ('PER_ETU_03', 'PER_RST_03', 'PER_REP_03', 'convention_stage_03.pdf', 'En attente', '2027-05-01', '2027-07-31');
 
 -- PER_ID_1 = enseignant titulaire tuteur, PER_ID_2 = responsable entreprise
-INSERT INTO TD_APPRENTI (PER_ID, PER_ID_1, PER_ID_2, APP_CONTRAT, APP_STATUT, APP_RESULTAT) VALUES
+INSERT IGNORE INTO TD_APPRENTI (PER_ID, PER_ID_1, PER_ID_2, APP_CONTRAT, APP_STATUT, APP_RESULTAT) VALUES
 ('PER_APP_01', 'PER_TIT_01', 'PER_REP_01', 'contrat_apprenti_01.pdf', 'En cours', 'Admis'),
 ('PER_APP_02', 'PER_TIT_02', 'PER_REP_02', 'contrat_apprenti_02.pdf', 'En cours', 'En attente'),
 ('PER_APP_03', 'PER_TIT_03', 'PER_REP_03', 'contrat_apprenti_03.pdf', 'Termine', 'Admis');
 
-INSERT INTO AMBASSADEUR (PER_ID) VALUES
+INSERT IGNORE INTO AMBASSADEUR (PER_ID) VALUES
 ('PER_AMB_01'),
 ('PER_AMB_02'),
 ('PER_AMB_03');
@@ -1897,7 +1895,7 @@ INSERT INTO AMBASSADEUR (PER_ID) VALUES
 --  3. ECOLES SUPERIEURES, SOUHAITS, AMBASSADEURS
 -- -----------------------------------------------------------------------------
 
-INSERT INTO TD_ECOLE_SUP (ECO_ID, ECO_NOM, ECO_VILLE, ECO_ADRESSE, ECO_CODE_POSTAL, ECO_MAIL, ECO_TELEPHONE, ECO_DESCRIPTION) VALUES
+INSERT IGNORE INTO TD_ECOLE_SUP (ECO_ID, ECO_NOM, ECO_VILLE, ECO_ADRESSE, ECO_CODE_POSTAL, ECO_MAIL, ECO_TELEPHONE, ECO_DESCRIPTION) VALUES
 ('ECO_01', 'Ecole Ingenieurs Normandie', 'Caen', '10 rue de la Gare', '14000', 'admissions@ein-normandie.fr', '0231000101', 'Ecole d ingenieurs generaliste'),
 ('ECO_02', 'Institut Numerique Rouen', 'Rouen', '4 place du Vieux Marche', '76000', 'contact@inr-rouen.fr', '0235000102', 'Cursus numerique et alternance'),
 ('ECO_03', 'Universite Rennes Tech', 'Rennes', '15 boulevard de la Tour', '35000', 'info@rennes-tech.fr', '0299000103', 'Master informatique et dev'),
@@ -1905,7 +1903,7 @@ INSERT INTO TD_ECOLE_SUP (ECO_ID, ECO_NOM, ECO_VILLE, ECO_ADRESSE, ECO_CODE_POST
 ('ECO_05', 'Ecole Data Lille', 'Lille', '9 rue Nationale', '59000', 'contact@data-lille.fr', '0320000105', 'Data science et recherche'),
 ('ECO_06', 'Bordeaux Digital School', 'Bordeaux', '21 cours de l Intendance', '33000', 'hello@bdx-digital.fr', '0556000106', NULL);
 
-INSERT INTO INCLUS (ECO_ID, KEY_ID) VALUES
+INSERT IGNORE INTO INCLUS (ECO_ID, KEY_ID) VALUES
 ('ECO_01', 'KEY_01'),
 ('ECO_01', 'KEY_05'),
 ('ECO_01', 'KEY_09'),
@@ -1925,7 +1923,7 @@ INSERT INTO INCLUS (ECO_ID, KEY_ID) VALUES
 ('ECO_06', 'KEY_10'),
 ('ECO_06', 'KEY_06');
 
-INSERT INTO AMBASSADE (ECO_ID, PER_ID) VALUES
+INSERT IGNORE INTO AMBASSADE (ECO_ID, PER_ID) VALUES
 ('ECO_01', 'PER_AMB_01'),
 ('ECO_02', 'PER_AMB_01'),
 ('ECO_03', 'PER_AMB_02'),
@@ -1934,7 +1932,7 @@ INSERT INTO AMBASSADE (ECO_ID, PER_ID) VALUES
 ('ECO_06', 'PER_AMB_03');
 
 -- 2 souhaits par etudiant
-INSERT INTO SOUHAIT (PER_ID, ECO_ID) VALUES
+INSERT IGNORE INTO SOUHAIT (PER_ID, ECO_ID) VALUES
 ('PER_ETU_01', 'ECO_01'),
 ('PER_ETU_02', 'ECO_02'),
 ('PER_ETU_03', 'ECO_03'),
@@ -1960,13 +1958,13 @@ INSERT INTO SOUHAIT (PER_ID, ECO_ID) VALUES
 ('PER_ELU_02', 'ECO_01'),
 ('PER_ELU_03', 'ECO_02');
 
-INSERT INTO TD_FICHE_PARCOURSUP (FPS_ANNEE, FPS_FICHE2, FPS_FICHE3) VALUES
+INSERT IGNORE INTO TD_FICHE_PARCOURSUP (FPS_ANNEE, FPS_FICHE2, FPS_FICHE3) VALUES
 ('2023', 'fiche2_2023.pdf', 'fiche3_2023.pdf'),
 ('2024', 'fiche2_2024.pdf', 'fiche3_2024.pdf'),
 ('2025', 'fiche2_2025.pdf', 'fiche3_2025.pdf'),
 ('2026', 'fiche2_2026.pdf', NULL);
 
-INSERT INTO TD_QUESTION_AMBASSADEUR (QUA_ID, PER_ID, PER_ID_1, QUA_OBJET, QUA_MESSAGE, QUA_REPONSE) VALUES
+INSERT IGNORE INTO TD_QUESTION_AMBASSADEUR (QUA_ID, PER_ID, PER_ID_1, QUA_OBJET, QUA_MESSAGE, QUA_REPONSE) VALUES
 ('QUA_01', 'PER_ETU_01', 'PER_AMB_01', 'Admission ingenieur', 'Bonjour, quel niveau faut-il pour entrer en cycle ingenieur apres le BUT ?', 'Il faut un bon dossier et un classement dans les 30 premiers pourcentages de la promo.'),
 ('QUA_02', 'PER_ETU_02', 'PER_AMB_01', 'Vie etudiante', 'Comment se passe la vie associative dans ton ecole ?', 'Tres riche : une vingtaine d associations et un gros week-end d integration.'),
 ('QUA_03', 'PER_ETU_03', 'PER_AMB_02', 'Alternance', 'Est-il facile de trouver une entreprise pour l alternance ?', 'Le service relations entreprises envoie les offres des septembre, ca se passe bien.'),
@@ -1976,7 +1974,7 @@ INSERT INTO TD_QUESTION_AMBASSADEUR (QUA_ID, PER_ID, PER_ID_1, QUA_OBJET, QUA_ME
 ('QUA_07', 'PER_BDE_01', 'PER_AMB_01', 'Logement', 'Y a-t-il des residences etudiantes pres de l ecole ?', 'Oui, deux residences a moins de 10 minutes, a reserver tot.'),
 ('QUA_08', 'PER_BDE_02', 'PER_AMB_02', 'Dossier de candidature', 'Faut-il une lettre de motivation pour candidater ?', NULL);
 
-INSERT INTO TD_QUESTION_DOCINFO (QDI_ID, SUJ_ID, QDI_NOM, QDI_PRENOM, QDI_MAIL, QDI_MESSAGE, QDI_STATUT, QDI_REPONSE) VALUES
+INSERT IGNORE INTO TD_QUESTION_DOCINFO (QDI_ID, SUJ_ID, QDI_NOM, QDI_PRENOM, QDI_MAIL, QDI_MESSAGE, QDI_STATUT, QDI_REPONSE) VALUES
 ('QDI_01', 'SUJ_01', 'Dubois', 'Lea', 'lea.dubois@mail.fr', 'Quelles sont les dates d ouverture des candidatures ?', 'Repondue', 'Les candidatures ouvrent mi-janvier sur la plateforme nationale.'),
 ('QDI_02', 'SUJ_03', 'Perrin', 'Hugo', 'hugo.perrin@mail.fr', 'Peut-on faire la formation en alternance des la premiere annee ?', 'Repondue', 'Oui, selon les places proposees par les entreprises partenaires.'),
 ('QDI_03', 'SUJ_02', 'Colin', 'Marie', 'marie.colin@mail.fr', 'Comment obtenir un certificat de scolarite ?', 'Repondue', 'Il est telechargeable depuis l espace numerique de travail.'),
@@ -1992,7 +1990,7 @@ INSERT INTO TD_QUESTION_DOCINFO (QDI_ID, SUJ_ID, QDI_NOM, QDI_PRENOM, QDI_MAIL, 
 -- -----------------------------------------------------------------------------
 
 -- PER_ID = enseignant responsable
-INSERT INTO TD_MATIERE (MAT_ID, PER_ID, MAT_NOM, MAT_NB_HEURE) VALUES
+INSERT IGNORE INTO TD_MATIERE (MAT_ID, PER_ID, MAT_NOM, MAT_NB_HEURE) VALUES
 ('MAT_01', 'PER_TIT_01', 'Algorithmique', 60),
 ('MAT_02', 'PER_TIT_02', 'Bases de donnees', 45),
 ('MAT_03', 'PER_TIT_03', 'Reseaux', 45),
@@ -2002,7 +2000,7 @@ INSERT INTO TD_MATIERE (MAT_ID, PER_ID, MAT_NOM, MAT_NB_HEURE) VALUES
 ('MAT_07', 'PER_VAC_03', 'Gestion de projet', 24),
 ('MAT_08', 'PER_RST_01', 'Systemes d exploitation', 45);
 
-INSERT INTO ENSEIGNER (MAT_ID, PER_ID, ENS_NB_HEURE_PREVU, NB_HEURE_EFFECTUE) VALUES
+INSERT IGNORE INTO ENSEIGNER (MAT_ID, PER_ID, ENS_NB_HEURE_PREVU, NB_HEURE_EFFECTUE) VALUES
 ('MAT_01', 'PER_TIT_01', 40, 22),
 ('MAT_01', 'PER_DET_01', 20, 10),
 ('MAT_02', 'PER_TIT_02', 30, 14),
@@ -2017,7 +2015,7 @@ INSERT INTO ENSEIGNER (MAT_ID, PER_ID, ENS_NB_HEURE_PREVU, NB_HEURE_EFFECTUE) VA
 ('MAT_08', 'PER_RST_01', 25, 10),
 ('MAT_08', 'PER_RST_02', 20, 8);
 
-INSERT INTO TD_HEURE (HEU_NUM, MAT_ID, HEU_STATUT, HEU_DATE_DEBUT, HEU_DATE_FIN) VALUES
+INSERT IGNORE INTO TD_HEURE (HEU_NUM, MAT_ID, HEU_STATUT, HEU_DATE_DEBUT, HEU_DATE_FIN) VALUES
 (1, 'MAT_01', 'Realisee', '2026-09-07 08:00:00', '2026-09-07 10:00:00'),
 (2, 'MAT_02', 'Realisee', '2026-09-11 10:15:00', '2026-09-11 12:15:00'),
 (3, 'MAT_03', 'Realisee', '2026-09-15 13:30:00', '2026-09-15 15:30:00'),
@@ -2044,7 +2042,7 @@ INSERT INTO TD_HEURE (HEU_NUM, MAT_ID, HEU_STATUT, HEU_DATE_DEBUT, HEU_DATE_FIN)
 (24, 'MAT_08', 'Planifiee', '2026-12-08 15:45:00', '2026-12-08 17:45:00');
 
 -- EVA_01 a EVA_06 passees (avec resultats), EVA_07 a EVA_10 a venir
-INSERT INTO TD_EVALUATION (EVA_ID, PRO_ID, MAT_ID, TYE_ID, EVA_DATE, EVA_SALLE) VALUES
+INSERT IGNORE INTO TD_EVALUATION (EVA_ID, PRO_ID, MAT_ID, TYE_ID, EVA_DATE, EVA_SALLE) VALUES
 ('EVA_01', 'BUINFO1A', 'MAT_01', 'TYE_01', '2026-10-05 09:00:00', 'Amphi A'),
 ('EVA_02', 'BUINFO1A', 'MAT_02', 'TYE_03', '2026-10-12 10:15:00', 'Salle TP 1'),
 ('EVA_03', 'BUINFO1A', 'MAT_03', 'TYE_01', '2026-10-19 13:30:00', 'Salle 204'),
@@ -2057,7 +2055,7 @@ INSERT INTO TD_EVALUATION (EVA_ID, PRO_ID, MAT_ID, TYE_ID, EVA_DATE, EVA_SALLE) 
 ('EVA_10', 'BUINFO1A', 'MAT_08', 'TYE_03', '2027-01-18 10:15:00', 'Salle TP 1');
 
 -- Notes sur 20, 'ABS' = absent
-INSERT INTO TD_RESULTAT (PER_ID, EVA_ID, RES_NOTE) VALUES
+INSERT IGNORE INTO TD_RESULTAT (PER_ID, EVA_ID, RES_NOTE) VALUES
 ('PER_ETU_01', 'EVA_01', '15.50'),
 ('PER_ETU_02', 'EVA_01', '15.00'),
 ('PER_ETU_03', 'EVA_01', '13.50'),
@@ -2132,7 +2130,7 @@ INSERT INTO TD_RESULTAT (PER_ID, EVA_ID, RES_NOTE) VALUES
 ('PER_ELU_03', 'EVA_06', '14.00');
 
 -- 2 enseignants par evaluation
-INSERT INTO TD_JURY (PER_ID, EVA_ID) VALUES
+INSERT IGNORE INTO TD_JURY (PER_ID, EVA_ID) VALUES
 ('PER_TIT_01', 'EVA_01'),
 ('PER_DET_01', 'EVA_01'),
 ('PER_TIT_02', 'EVA_02'),
@@ -2159,7 +2157,7 @@ INSERT INTO TD_JURY (PER_ID, EVA_ID) VALUES
 --  5. ABSENCES, AMENAGEMENTS, SANCTIONS, BDE, EVENEMENTS
 -- -----------------------------------------------------------------------------
 
-INSERT INTO TD_ABSENCE (ABS_ID, PER_ID, ABS_DATE_DEBUT, ABS_DATE_FIN, ABS_JUSTIFICATIF, ABS_STATUT) VALUES
+INSERT IGNORE INTO TD_ABSENCE (ABS_ID, PER_ID, ABS_DATE_DEBUT, ABS_DATE_FIN, ABS_JUSTIFICATIF, ABS_STATUT) VALUES
 ('ABS_01', 'PER_ETU_01', '2026-09-15 08:00:00', '2026-09-15 12:15:00', 'certificat_medical_01.pdf', 'Justifiee'),
 ('ABS_02', 'PER_ETU_03', '2026-10-19 13:30:00', '2026-10-19 15:30:00', NULL, 'Non justifiee'),
 ('ABS_03', 'PER_ETU_02', '2026-10-02 08:00:00', '2026-10-02 17:45:00', 'convocation_permis.pdf', 'Justifiee'),
@@ -2171,14 +2169,14 @@ INSERT INTO TD_ABSENCE (ABS_ID, PER_ID, ABS_DATE_DEBUT, ABS_DATE_FIN, ABS_JUSTIF
 ('ABS_09', 'PER_BDE_03', '2026-11-17 08:00:00', '2026-11-17 10:00:00', NULL, 'Non justifiee'),
 ('ABS_10', 'PER_ETU_01', '2026-11-24 13:30:00', '2026-11-24 15:30:00', 'certificat_medical_03.pdf', 'En attente');
 
-INSERT INTO TD_AMENAGEMENT (AME_ID, PER_ID, AME_LIBELLE, AME_STATUT) VALUES
+INSERT IGNORE INTO TD_AMENAGEMENT (AME_ID, PER_ID, AME_LIBELLE, AME_STATUT) VALUES
 ('AME_01', 'PER_ETU_02', 'Tiers temps', 'Valide'),
 ('AME_02', 'PER_ETU_01', 'Ordinateur en examen', 'Valide'),
 ('AME_03', 'PER_APP_02', 'Salle isolee', 'En attente'),
 ('AME_04', 'PER_ELU_01', 'Preneur de notes', 'Refuse');
 
 -- PER_ID = chef de departement / secretaire qui prononce la sanction
-INSERT INTO TD_SANCTION (SAN_ID, PER_ID, GRA_ID, SAN_DATE, SAN_STATUT) VALUES
+INSERT IGNORE INTO TD_SANCTION (SAN_ID, PER_ID, GRA_ID, SAN_DATE, SAN_STATUT) VALUES
 ('SAN_01', 'PER_CHD_01', 'GRA_1', '2026-09-25 10:00:00', 'Appliquee'),
 ('SAN_02', 'PER_CHD_02', 'GRA_2', '2026-10-14 14:30:00', 'Appliquee'),
 ('SAN_03', 'PER_CHD_01', 'GRA_2', '2026-10-30 09:00:00', 'Contestee'),
@@ -2186,7 +2184,7 @@ INSERT INTO TD_SANCTION (SAN_ID, PER_ID, GRA_ID, SAN_DATE, SAN_STATUT) VALUES
 ('SAN_05', 'PER_CHD_02', 'GRA_1', '2026-11-13 11:15:00', 'Annulee'),
 ('SAN_06', 'PER_CHD_03', 'GRA_4', '2026-11-20 15:00:00', 'En cours');
 
-INSERT INTO CONCERNER2 (SAN_ID, PER_ID) VALUES
+INSERT IGNORE INTO CONCERNER2 (SAN_ID, PER_ID) VALUES
 ('SAN_01', 'PER_ETU_03'),
 ('SAN_02', 'PER_BDE_03'),
 ('SAN_03', 'PER_ETU_02'),
@@ -2196,7 +2194,7 @@ INSERT INTO CONCERNER2 (SAN_ID, PER_ID) VALUES
 ('SAN_06', 'PER_ELU_03');
 
 -- Publie par les etudiants du role Etudiant BDE
-INSERT INTO TD_INFO_BDE (BDE_ID, TYB_ID, PER_ID, BDE_TITRE, BDE_DESCRIPTION) VALUES
+INSERT IGNORE INTO TD_INFO_BDE (BDE_ID, TYB_ID, PER_ID, BDE_TITRE, BDE_DESCRIPTION) VALUES
 ('BDE_01', 'TYB_01', 'PER_BDE_01', 'Week-end d integration', 'Weekend en Normandie en octobre'),
 ('BDE_02', 'TYB_04', 'PER_BDE_02', 'Soiree de Noel', 'Soiree le 18 decembre'),
 ('BDE_03', 'TYB_02', 'PER_BDE_03', 'Vente de pulls', 'Pull promo, commande ouverte'),
@@ -2206,7 +2204,7 @@ INSERT INTO TD_INFO_BDE (BDE_ID, TYB_ID, PER_ID, BDE_TITRE, BDE_DESCRIPTION) VAL
 ('BDE_07', 'TYB_04', 'PER_BDE_01', 'Soiree jeux de societe', 'Chaque jeudi soir au foyer'),
 ('BDE_08', 'TYB_03', 'PER_BDE_02', 'Partenariat salle de sport', 'Abonnement a prix reduit');
 
-INSERT INTO TD_EVENEMENT (ID, PER_ID, NOM, DESCRIPTION, VILLE, ADRESSE, CODE_POSTAL, DATE) VALUES
+INSERT IGNORE INTO TD_EVENEMENT (ID, PER_ID, NOM, DESCRIPTION, VILLE, ADRESSE, CODE_POSTAL, DATE) VALUES
 ('EVT_01', 'PER_PAD_01', 'Journee portes ouvertes', 'Presentation des formations', 'Caen', 'Campus 2, bd Marechal Juin', '14000', '2027-02-06 09:00:00'),
 ('EVT_02', 'PER_CHD_01', 'Forum des entreprises', 'Rencontre etudiants-entreprises', 'Caen', 'Hall de l IUT', '14000', '2026-12-10 10:00:00'),
 ('EVT_03', 'PER_DET_01', 'Conference cybersecurite', 'Intervention d un expert', 'Caen', 'Amphi A', '14000', '2026-12-03 14:00:00'),
@@ -2215,7 +2213,7 @@ INSERT INTO TD_EVENEMENT (ID, PER_ID, NOM, DESCRIPTION, VILLE, ADRESSE, CODE_POS
 ('EVT_06', 'PER_AMB_01', 'Salon de l etudiant', 'Stand des ambassadeurs', 'Rouen', 'Parc des expositions', '76000', '2027-01-23 09:30:00');
 
 -- PER_ID = personnel SSE, PER_ID_1 = etudiant
-INSERT INTO TD_RDV_SSE (RDV_ID, PER_ID, PER_ID_1, RDV_DATE_DEBUT, RDV_DATE_FIN, RDV_STATUT) VALUES
+INSERT IGNORE INTO TD_RDV_SSE (RDV_ID, PER_ID, PER_ID_1, RDV_DATE_DEBUT, RDV_DATE_FIN, RDV_STATUT) VALUES
 ('RDV_01', 'PER_SSE_01', 'PER_ETU_02', '2026-09-22 10:00:00', '2026-09-22 10:30:00', 'Realise'),
 ('RDV_02', 'PER_SSE_01', 'PER_ETU_01', '2026-10-06 14:00:00', '2026-10-06 14:30:00', 'Realise'),
 ('RDV_03', 'PER_SSE_02', 'PER_APP_02', '2026-11-04 09:00:00', '2026-11-04 09:45:00', 'Realise'),
@@ -2224,7 +2222,7 @@ INSERT INTO TD_RDV_SSE (RDV_ID, PER_ID, PER_ID_1, RDV_DATE_DEBUT, RDV_DATE_FIN, 
 ('RDV_06', 'PER_SSE_03', 'PER_APP_01', '2026-12-04 10:30:00', '2026-12-04 11:00:00', 'En attente'),
 ('RDV_07', 'PER_SSE_01', 'PER_ELU_01', '2026-12-09 16:00:00', '2026-12-09 16:30:00', 'En attente');
 
-INSERT INTO TD_CROUS_FERMETURE (CRO_DATE, CRO_STATUT, CRO_RAISON) VALUES
+INSERT IGNORE INTO TD_CROUS_FERMETURE (CRO_DATE, CRO_STATUT, CRO_RAISON) VALUES
 ('2026-12-24 00:00:00', 'Ferme', 'Fermeture annuelle de fin d annee'),
 ('2026-12-25 00:00:00', 'Ferme', 'Jour de Noel'),
 ('2027-01-01 00:00:00', 'Ferme', 'Jour de l An'),
@@ -2236,7 +2234,7 @@ INSERT INTO TD_CROUS_FERMETURE (CRO_DATE, CRO_STATUT, CRO_RAISON) VALUES
 --  6. REUNIONS, COMPTES RENDUS, DECISIONS
 -- -----------------------------------------------------------------------------
 
-INSERT INTO TD_REUNION (REU_ID, REU_NOM, REU_DATE, REU_STATUT, REU_LIEU) VALUES
+INSERT IGNORE INTO TD_REUNION (REU_ID, REU_NOM, REU_DATE, REU_STATUT, REU_LIEU) VALUES
 ('REU_01', 'Rentree pedagogique', '2026-09-02 09:00:00', 'Terminee', 'Amphi A'),
 ('REU_02', 'Conseil de departement', '2026-10-15 14:00:00', 'Terminee', 'Salle de reunion 1'),
 ('REU_03', 'Jury semestre 1', '2026-11-20 09:30:00', 'Terminee', 'Salle de reunion 2'),
@@ -2245,7 +2243,7 @@ INSERT INTO TD_REUNION (REU_ID, REU_NOM, REU_DATE, REU_STATUT, REU_LIEU) VALUES
 ('REU_06', 'Conseil de classe S1', '2027-01-28 13:30:00', 'Planifiee', 'Salle de reunion 1');
 
 -- Les etudiants elus participent aux conseils de classe
-INSERT INTO PARTICIPE (REU_ID, PER_ID) VALUES
+INSERT IGNORE INTO PARTICIPE (REU_ID, PER_ID) VALUES
 ('REU_01', 'PER_CHD_01'),
 ('REU_01', 'PER_CHD_02'),
 ('REU_01', 'PER_CHD_03'),
@@ -2298,7 +2296,7 @@ INSERT INTO PARTICIPE (REU_ID, PER_ID) VALUES
 ('REU_06', 'PER_ELU_01'),
 ('REU_06', 'PER_ELU_02');
 
-INSERT INTO TD_COMPTE_RENDU (COM_ID, TYC_ID, PER_ID, COM_ORDRE, COM_DATE, COM_DESCRIPTION, COM_DOCUMENT, COM_PUBLIC, COM_ARCHIVE) VALUES
+INSERT IGNORE INTO TD_COMPTE_RENDU (COM_ID, TYC_ID, PER_ID, COM_ORDRE, COM_DATE, COM_DESCRIPTION, COM_DOCUMENT, COM_PUBLIC, COM_ARCHIVE) VALUES
 ('COM_01', 'TYC_01', 'PER_SEC_01', '1', '2026-09-02 11:00:00', 'Compte rendu de la rentree pedagogique', 'cr_rentree_2026.pdf', 1, 0),
 ('COM_02', 'TYC_04', 'PER_SEC_02', '2', '2026-09-18 10:00:00', 'Organisation des emplois du temps', 'cr_edt_2026.pdf', 0, 0),
 ('COM_03', 'TYC_01', 'PER_DET_01', '3', '2026-10-15 16:00:00', 'Bilan des premieres semaines', 'cr_conseil_dept_oct.pdf', 1, 0),
@@ -2308,7 +2306,7 @@ INSERT INTO TD_COMPTE_RENDU (COM_ID, TYC_ID, PER_ID, COM_ORDRE, COM_DATE, COM_DE
 ('COM_07', 'TYC_01', 'PER_DET_01', '7', '2025-06-10 15:00:00', 'Bilan de l annee precedente', 'cr_bilan_2025.pdf', 1, 1),
 ('COM_08', 'TYC_02', 'PER_TIT_02', '8', '2025-02-04 16:30:00', 'Conseil de classe S1 2024-2025', 'cr_conseil_s1_2025.pdf', 0, 1);
 
-INSERT INTO TD_JOURNAL_COMPTE_RENDU (JCR_DATE_MODIF, COM_ID, JCR_ORDRE, JCR_DATE, JCR_DESCRIPTION, JCR_DOCUMENT, JCR_PUBLIC, JCR_ARCHIVE, JCR_TYPE, JCR_AUTEUR) VALUES
+INSERT IGNORE INTO TD_JOURNAL_COMPTE_RENDU (JCR_DATE_MODIF, COM_ID, JCR_ORDRE, JCR_DATE, JCR_DESCRIPTION, JCR_DOCUMENT, JCR_PUBLIC, JCR_ARCHIVE, JCR_TYPE, JCR_AUTEUR) VALUES
 ('2026-09-02 11:30:00', 'COM_01', '1', '2026-09-02 11:00:00', 'Creation du compte rendu', 'cr_rentree_2026.pdf', 1, 0, 'Creation', 'PER_SEC_01'),
 ('2026-09-03 08:45:00', 'COM_01', '1', '2026-09-02 11:00:00', 'Correction des noms propres', 'cr_rentree_2026_v2.pdf', 1, 0, 'Modification', 'PER_SEC_01'),
 ('2026-09-18 10:20:00', 'COM_02', '2', '2026-09-18 10:00:00', 'Creation du compte rendu', 'cr_edt_2026.pdf', 0, 0, 'Creation', 'PER_SEC_02'),
@@ -2319,7 +2317,7 @@ INSERT INTO TD_JOURNAL_COMPTE_RENDU (JCR_DATE_MODIF, COM_ID, JCR_ORDRE, JCR_DATE
 ('2026-11-24 09:00:00', 'COM_06', '6', '2026-11-23 09:30:00', 'Passage en public', 'cr_forum_2026.pdf', 1, 0, 'Publication', 'PER_CHD_01'),
 ('2025-06-11 08:00:00', 'COM_07', '7', '2025-06-10 15:00:00', 'Archivage du compte rendu', 'cr_bilan_2025.pdf', 1, 1, 'Archivage', 'PER_CHD_01');
 
-INSERT INTO TD_DECISION (DEC_ID, COM_ID, TYD_ID, PER_ID, DEC_NOM, DEC_DATE, DEC_DESCRIPTION, DEC_DOCUMENT, DEC_PUBLIC, DEC_ARCHIVE) VALUES
+INSERT IGNORE INTO TD_DECISION (DEC_ID, COM_ID, TYD_ID, PER_ID, DEC_NOM, DEC_DATE, DEC_DESCRIPTION, DEC_DOCUMENT, DEC_PUBLIC, DEC_ARCHIVE) VALUES
 ('DEC_01', 'COM_01', 'TYD_01', 'PER_CHD_01', 'Validation emploi du temps', '2026-09-02 11:15:00', 'Emploi du temps S1 valide pour toutes les promos.', 'decision_edt_s1.pdf', 1, 0),
 ('DEC_02', 'COM_03', 'TYD_05', 'PER_DET_01', 'Amenagement tiers temps', '2026-10-15 16:20:00', 'Tiers temps accorde pour les examens.', 'decision_amenagement_01.pdf', 0, 0),
 ('DEC_03', 'COM_04', 'TYD_02', 'PER_TIT_02', 'Avertissement assiduite', '2026-10-22 17:20:00', 'Avertissement pour absences repetees.', 'decision_avertissement_01.pdf', 0, 0),
@@ -2329,7 +2327,7 @@ INSERT INTO TD_DECISION (DEC_ID, COM_ID, TYD_ID, PER_ID, DEC_NOM, DEC_DATE, DEC_
 ('DEC_07', 'COM_07', 'TYD_01', 'PER_CHD_01', 'Validation bilan 2025', '2025-06-10 15:30:00', 'Bilan 2024-2025 valide.', 'decision_bilan_2025.pdf', 1, 1),
 ('DEC_08', 'COM_08', 'TYD_03', 'PER_TIT_02', 'Redoublement 2025', '2025-02-04 16:45:00', 'Decision de redoublement apres conseil.', 'decision_redoublement_2025.pdf', 0, 1);
 
-INSERT INTO TD_JOURNAL_DECISION (JDE_DATE_MODIF, DEC_ID, JDE_NOM, JDE_DATE, JDE_DESCRIPTION, JDE_DOCUMENT, JDE_PUBLIC, JDE_ARCHIVE, JDE_TYPE, JDE_AUTEUR) VALUES
+INSERT IGNORE INTO TD_JOURNAL_DECISION (JDE_DATE_MODIF, DEC_ID, JDE_NOM, JDE_DATE, JDE_DESCRIPTION, JDE_DOCUMENT, JDE_PUBLIC, JDE_ARCHIVE, JDE_TYPE, JDE_AUTEUR) VALUES
 ('2026-09-02 11:20:00', 'DEC_01', 'Validation emploi du temps', '2026-09-02 11:15:00', 'Creation de la decision', 'decision_edt_s1.pdf', 1, 0, 'Creation', 'PER_CHD_01'),
 ('2026-10-15 16:25:00', 'DEC_02', 'Amenagement tiers temps', '2026-10-15 16:20:00', 'Creation de la decision', 'decision_amenagement_01.pdf', 0, 0, 'Creation', 'PER_DET_01'),
 ('2026-10-22 17:25:00', 'DEC_03', 'Avertissement assiduite', '2026-10-22 17:20:00', 'Creation de la decision', 'decision_avertissement_01.pdf', 0, 0, 'Creation', 'PER_TIT_02'),
@@ -2339,7 +2337,7 @@ INSERT INTO TD_JOURNAL_DECISION (JDE_DATE_MODIF, DEC_ID, JDE_NOM, JDE_DATE, JDE_
 ('2026-11-23 09:50:00', 'DEC_06', 'Admission apprentis', '2026-11-23 09:45:00', 'Creation de la decision', 'decision_admission_app.pdf', 1, 0, 'Creation', 'PER_CHD_01'),
 ('2025-06-10 16:00:00', 'DEC_07', 'Validation bilan 2025', '2025-06-10 15:30:00', 'Archivage de la decision', 'decision_bilan_2025.pdf', 1, 1, 'Archivage', 'PER_CHD_01');
 
-INSERT INTO INCLURE (DEC_ID, KEY_ID) VALUES
+INSERT IGNORE INTO INCLURE (DEC_ID, KEY_ID) VALUES
 ('DEC_01', 'KEY_01'),
 ('DEC_02', 'KEY_01'),
 ('DEC_03', 'KEY_01'),
@@ -2356,19 +2354,19 @@ INSERT INTO INCLURE (DEC_ID, KEY_ID) VALUES
 --  7. DOSSIERS, CHECKLISTS, PAIEMENTS VACATAIRES
 -- -----------------------------------------------------------------------------
 
-INSERT INTO TD_DOSSIER_VACATAIRE (DOV_ID, PER_ID, DOV_STATUT, DOV_CARTEID, DOV_CV) VALUES
+INSERT IGNORE INTO TD_DOSSIER_VACATAIRE (DOV_ID, PER_ID, DOV_STATUT, DOV_CARTEID, DOV_CV) VALUES
 ('DOV_01', 'PER_VAC_01', 'Complet', 'cni_vacataire_01.pdf', 'cv_vacataire_01.pdf'),
 ('DOV_02', 'PER_VAC_02', 'En validation', 'cni_vacataire_02.pdf', 'cv_vacataire_02.pdf'),
 ('DOV_03', 'PER_VAC_03', 'Incomplet', 'cni_vacataire_03.pdf', 'cv_vacataire_03.pdf');
 
 -- PK = PER_ID seul : une seule ligne par vacataire possible
-INSERT INTO TD_CHECKLIST (ETA_ID, PER_ID, CHE_LIBELLE, CHE_DESCRIPTION, CHE_STATUT) VALUES
+INSERT IGNORE INTO TD_CHECKLIST (ETA_ID, PER_ID, CHE_LIBELLE, CHE_DESCRIPTION, CHE_STATUT) VALUES
 ('ETA_04', 'PER_VAC_01', 'Contrat signe', 'Contrat retourne le 02/09', 'Valide'),
 ('ETA_03', 'PER_VAC_02', 'RIB', 'RIB en cours de verification', 'En cours'),
 ('ETA_05', 'PER_VAC_03', 'Attestation employeur', 'Document manquant', 'Manquant');
 
 -- PK = PAI_MOIS seul : un seul paiement par mois pour l ensemble des vacataires
-INSERT INTO TD_PAIEMENT_VACATAIRE (PAI_MOIS, PER_ID, PAI_DATE_PAIEMENT, PAI_STATUT, PAI_MONTANT) VALUES
+INSERT IGNORE INTO TD_PAIEMENT_VACATAIRE (PAI_MOIS, PER_ID, PAI_DATE_PAIEMENT, PAI_STATUT, PAI_MONTANT) VALUES
 ('2026-04-01', 'PER_VAC_01', '2026-04-28', 'Paye', 1365),
 ('2026-05-01', 'PER_VAC_02', '2026-05-28', 'Paye', 1560),
 ('2026-06-01', 'PER_VAC_03', '2026-06-28', 'Paye', 824),
@@ -2383,7 +2381,7 @@ INSERT INTO TD_PAIEMENT_VACATAIRE (PAI_MOIS, PER_ID, PAI_DATE_PAIEMENT, PAI_STAT
 --  8. TEMPLATES DE MAIL, PIECES JOINTES
 -- -----------------------------------------------------------------------------
 
-INSERT INTO TD_PIECE_JOINTE (PJ_ID, PJ_NOM_FICHIER, PJ_CHEMIN, PJ_MIME_TYPE, PJ_TAILLE_OCTET, PJ_DATE_DEPOT) VALUES
+INSERT IGNORE INTO TD_PIECE_JOINTE (PJ_ID, PJ_NOM_FICHIER, PJ_CHEMIN, PJ_MIME_TYPE, PJ_TAILLE_OCTET, PJ_DATE_DEPOT) VALUES
 (1, 'livret_accueil.pdf', '/uploads/templates/livret_accueil.pdf', 'application/pdf', 1843200, '2026-08-25 10:00:00'),
 (2, 'plan_campus.png', '/uploads/templates/plan_campus.png', 'image/png', 524288, '2026-08-25 10:05:00'),
 (3, 'reglement_interieur.pdf', '/uploads/templates/reglement_interieur.pdf', 'application/pdf', 734003, '2026-08-26 09:30:00'),
@@ -2391,7 +2389,7 @@ INSERT INTO TD_PIECE_JOINTE (PJ_ID, PJ_NOM_FICHIER, PJ_CHEMIN, PJ_MIME_TYPE, PJ_
 (5, 'calendrier_examens.pdf', '/uploads/templates/calendrier_examens.pdf', 'application/pdf', 262144, '2026-10-01 08:45:00'),
 (6, 'guide_vacataire.pdf', '/uploads/templates/guide_vacataire.pdf', 'application/pdf', 1048576, '2026-09-02 16:20:00');
 
-INSERT INTO TD_TEMPLATE_MAIL (TEM_NUM, TEM_OBJET, TEM_CORPS) VALUES
+INSERT IGNORE INTO TD_TEMPLATE_MAIL (TEM_NUM, TEM_OBJET, TEM_CORPS) VALUES
 (1, 'Bienvenue a l IUT', 'Bonjour {{prenom}},
 
 Bienvenue ! Vous trouverez en piece jointe le livret d accueil et le plan du campus.
@@ -2429,7 +2427,7 @@ Votre absence du {{date}} n a pas ete justifiee. Merci de deposer un justificati
 Cordialement,
 Le secretariat');
 
-INSERT INTO TD_JOINDRE (TEM_NUM, PJ_ID) VALUES
+INSERT IGNORE INTO TD_JOINDRE (TEM_NUM, PJ_ID) VALUES
 (1, 1),
 (1, 2),
 (2, 5),
@@ -2438,7 +2436,7 @@ INSERT INTO TD_JOINDRE (TEM_NUM, PJ_ID) VALUES
 (5, 5),
 (6, 3);
 
-INSERT INTO TD_DESTINER (TEM_NUM, PER_ID) VALUES
+INSERT IGNORE INTO TD_DESTINER (TEM_NUM, PER_ID) VALUES
 (1, 'PER_ETU_01'),
 (1, 'PER_ETU_02'),
 (1, 'PER_ETU_03'),

@@ -1,9 +1,14 @@
 <?php
 
-namespace models;
+namespace models\acteurs;
 
 use core\Model;
 use Database;
+use models\decision\CompteRendu;
+use models\decision\Decision;
+use models\communication\Evenement;
+use models\decision\Participe;
+use models\vieetudiante\Sanction;
 
 /**
  * Modèle de base représentant une personne (table TD_PERSONNE).
@@ -65,13 +70,17 @@ class Personne extends Model
     }
 
     /**
-     * Retourne le profil Ambassadeur de la personne si elle est enregistrée dans TD_AMBASSADEUR.
+     * Retourne le profil Ambassadeur de la personne si elle est enregistrée dans AMBASSADEUR / TD_AMBASSADEUR.
      *
      * @return Ambassadeur|null L'instance Ambassadeur complétée ou null.
      */
     public function getAsAmbassadeur(): ?Ambassadeur
     {
-        return $this->fetchRole('TD_AMBASSADEUR', Ambassadeur::class);
+        $role = $this->fetchRole('AMBASSADEUR', Ambassadeur::class);
+        if ($role === null) {
+            $role = $this->fetchRole('TD_AMBASSADEUR', Ambassadeur::class);
+        }
+        return $role;
     }
 
     /**
@@ -129,6 +138,38 @@ class Personne extends Model
     }
 
     /**
+     * Recherche une personne par son identifiant unique (PER_ID).
+     *
+     * @param string $id
+     * @return static|null
+     */
+    public static function findById(string $id): ?static
+    {
+        $stmt = Database::getInstance()->prepare('SELECT * FROM TD_PERSONNE WHERE PER_ID = ? LIMIT 1');
+        $stmt->execute([$id]);
+        $row = $stmt->fetch();
+
+        if ($row === false) {
+            return null;
+        }
+
+        return (new static())->hydrate($row);
+    }
+
+    /**
+     * Récupère toutes les personnes enregistrées.
+     *
+     * @return static[]
+     */
+    public static function findAll(): array
+    {
+        $stmt = Database::getInstance()->query('SELECT * FROM TD_PERSONNE');
+        $rows = $stmt->fetchAll();
+
+        return array_map(fn($row) => (new static())->hydrate($row), $rows);
+    }
+
+    /**
      * Recherche une personne en base de données à partir de son adresse email.
      *
      * @param string $email Adresse email à rechercher.
@@ -148,28 +189,53 @@ class Personne extends Model
     }
 
     /**
-     * Hydrate les propriétés de l'instance courante à partir d'un tableau associatif.
+     * Récupère les événements créés par cette personne.
      *
-     * Utilise ReflectionProperty pour initialiser les propriétés readonly (y compris
-     * celles déclarées dans une classe mère) sans lever d'erreur de portée.
-     *
-     * @param array<string, mixed> $data Données issues de la base de données ou de la session.
-     * @return static L'instance courante hydratée.
+     * @return Evenement[]
      */
-    protected function hydrate(array $data): static
+    public function getEvenements(): array
     {
-        foreach ($data as $key => $value) {
-            $prop = property_exists($this, $key) ? $key : strtolower($key);
+        return Evenement::getFromPersonne($this);
+    }
 
-            if (property_exists($this, $prop) && $value !== null) {
-                $reflection = new \ReflectionProperty($this, $prop);
-                if (!$reflection->isInitialized($this)) {
-                    $reflection->setValue($this, (string) $value);
-                }
-            }
-        }
+    /**
+     * Récupère les comptes-rendus rédigés par cette personne.
+     *
+     * @return CompteRendu[]
+     */
+    public function getComptesRendus(): array
+    {
+        return CompteRendu::getFromPersonne($this);
+    }
 
-        return $this;
+    /**
+     * Récupère les décisions prises ou initiées par cette personne.
+     *
+     * @return Decision[]
+     */
+    public function getDecisions(): array
+    {
+        return Decision::getFromPersonne($this);
+    }
+
+    /**
+     * Récupère les sanctions prononcées ou associées à cette personne.
+     *
+     * @return Sanction[]
+     */
+    public function getSanctions(): array
+    {
+        return Sanction::getFromPersonne($this);
+    }
+
+    /**
+     * Récupère les réunions auxquelles cette personne participe.
+     *
+     * @return Participe[]
+     */
+    public function getParticipationsReunions(): array
+    {
+        return Participe::getFromPersonne($this);
     }
 
     /**
@@ -182,4 +248,8 @@ class Personne extends Model
     {
         return (new static())->hydrate($data);
     }
+}
+
+if (!class_exists('models\Personne', false)) {
+    class_alias(Personne::class, 'models\Personne');
 }
