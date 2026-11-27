@@ -1521,12 +1521,12 @@ INSERT INTO TD_ROLE (ROL_ID, ROL_LIBELLE) VALUES
 ('302', 'Personnel administratif'),
 ('303', 'Personnel de la DSI'),
 ('304', 'Secrétaire de département'),
-('305', 'Responsable des vacataires'),
+('305', 'Representant des vacataires'),
 ('401', 'Utilisateur connecté'),
 ('501', 'Directeur des études'),
 ('502', 'Enseignant titulaire'),
 ('503', 'Enseignant vacataire'),
-('504', 'Responsable de stage enseignant'),
+('504', 'Representant de stage enseignant'),
 ('601', 'Étudiant'),
 ('602', 'Étudiant apprenti'),
 ('603', 'Étudiant BDE'),
@@ -1535,7 +1535,7 @@ INSERT INTO TD_ROLE (ROL_ID, ROL_LIBELLE) VALUES
 ('702', 'Personnel CROUS'),
 ('703', 'Personnel SSE'),
 ('704', 'Utilisateur non connecté'),
-('705', 'Responsable entreprise stage');
+('705', 'Representant entreprise stage');
 
 -- PRO_ID = BUINFO[annee 1 a 3]A
 INSERT INTO TD_PROMO (PRO_ID, PRO_DATE_DEBUT, PRO_DATE_FIN) VALUES
@@ -1621,129 +1621,129 @@ INSERT INTO TD_ETAPE_CHECKLIST (ETA_ID, ETA_LIBELLE, ETA_DESCRIPTION) VALUES
 
 -- 101  Système / Administrateur de la plateforme
 INSERT INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
-('PER_SYS_01', SHA2('Password123!',256), 'Martin', 'Claire', 'Caen', '1969-12-30', 'claire.martin@univ-caen.fr', '0600000001'),
-('PER_SYS_02', SHA2('Password123!',256), 'Bernard', 'Thomas', 'Lisieux', '1977-05-04', 'thomas.bernard@univ-caen.fr', '0600000002'),
-('PER_SYS_03', SHA2('Password123!',256), 'Petit', 'Sophie', 'Bayeux', '1975-01-06', 'sophie.petit@univ-caen.fr', '0600000003');
+('PER_SYS_01', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Martin', 'Claire', 'Caen', '1969-12-30', 'claire.martin@univ-caen.fr', '0600000001'),
+('PER_SYS_02', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Bernard', 'Thomas', 'Lisieux', '1977-05-04', 'thomas.bernard@univ-caen.fr', '0600000002'),
+('PER_SYS_03', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Petit', 'Sophie', 'Bayeux', '1975-01-06', 'sophie.petit@univ-caen.fr', '0600000003');
 
 -- 201  Administratif / Resp. validation des heures
 INSERT INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
-('PER_RVH_01', SHA2('Password123!',256), 'Durand', 'Jean', 'Deauville', '1969-08-07', 'jean.durand@univ-caen.fr', '0600000004'),
-('PER_RVH_02', SHA2('Password123!',256), 'Leroy', 'Isabelle', 'Rouen', '1989-06-19', 'isabelle.leroy@univ-caen.fr', '0600000005'),
-('PER_RVH_03', SHA2('Password123!',256), 'Moreau', 'Marc', 'Evreux', '1991-06-28', 'marc.moreau@univ-caen.fr', '0600000006');
+('PER_RVH_01', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm' 'Durand', 'Jean', 'Deauville', '1969-08-07', 'jean.durand@univ-caen.fr', '0600000004'),
+('PER_RVH_02', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Leroy', 'Isabelle', 'Rouen', '1989-06-19', 'isabelle.leroy@univ-caen.fr', '0600000005'),
+('PER_RVH_03', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Moreau', 'Marc', 'Evreux', '1991-06-28', 'marc.moreau@univ-caen.fr', '0600000006');
 
 -- 301  Administration / Chef de département
 INSERT INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
-('PER_CHD_01', SHA2('Password123!',256), 'Simon', 'Laurent', 'Caen', '1966-06-05', 'laurent.simon@univ-caen.fr', '0600000007'),
-('PER_CHD_02', SHA2('Password123!',256), 'Laurent', 'Nathalie', 'Lisieux', '1969-03-16', 'nathalie.laurent@univ-caen.fr', '0600000008'),
-('PER_CHD_03', SHA2('Password123!',256), 'Lefebvre', 'Olivier', 'Cherbourg', '1975-06-09', 'olivier.lefebvre@univ-caen.fr', '0600000009');
+('PER_CHD_01', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Simon', 'Laurent', 'Caen', '1966-06-05', 'laurent.simon@univ-caen.fr', '0600000007'),
+('PER_CHD_02', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Laurent', 'Nathalie', 'Lisieux', '1969-03-16', 'nathalie.laurent@univ-caen.fr', '0600000008'),
+('PER_CHD_03', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Lefebvre', 'Olivier', 'Cherbourg', '1975-06-09', 'olivier.lefebvre@univ-caen.fr', '0600000009');
 
 -- 302  Administration / Personnel administratif
 INSERT INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
-('PER_PAD_01', SHA2('Password123!',256), 'Garcia', 'Julien', 'Cherbourg', '1966-03-11', 'julien.garcia@univ-caen.fr', '0600000010'),
-('PER_PAD_02', SHA2('Password123!',256), 'Roux', 'Camille', 'Saint-Lo', '1973-12-02', 'camille.roux@univ-caen.fr', '0600000011'),
-('PER_PAD_03', SHA2('Password123!',256), 'Fournier', 'Antoine', 'Evreux', '1989-06-12', 'antoine.fournier@univ-caen.fr', '0600000012');
+('PER_PAD_01', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Garcia', 'Julien', 'Cherbourg', '1966-03-11', 'julien.garcia@univ-caen.fr', '0600000010'),
+('PER_PAD_02', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Roux', 'Camille', 'Saint-Lo', '1973-12-02', 'camille.roux@univ-caen.fr', '0600000011'),
+('PER_PAD_03', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Fournier', 'Antoine', 'Evreux', '1989-06-12', 'antoine.fournier@univ-caen.fr', '0600000012');
 
 -- 303  Administration / Personnel de la DSI
 INSERT INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
-('PER_DSI_01', SHA2('Password123!',256), 'Girard', 'Lucas', 'Falaise', '1974-11-21', 'lucas.girard@univ-caen.fr', '0600000013'),
-('PER_DSI_02', SHA2('Password123!',256), 'Bonnet', 'Emma', 'Vire', '1991-06-08', 'emma.bonnet@univ-caen.fr', '0600000014'),
-('PER_DSI_03', SHA2('Password123!',256), 'Dupuis', 'Hugo', 'Cabourg', '1965-04-17', 'hugo.dupuis@univ-caen.fr', '0600000015');
+('PER_DSI_01', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Girard', 'Lucas', 'Falaise', '1974-11-21', 'lucas.girard@univ-caen.fr', '0600000013'),
+('PER_DSI_02', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Bonnet', 'Emma', 'Vire', '1991-06-08', 'emma.bonnet@univ-caen.fr', '0600000014'),
+('PER_DSI_03', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Dupuis', 'Hugo', 'Cabourg', '1965-04-17', 'hugo.dupuis@univ-caen.fr', '0600000015');
 
 -- 304  Administration / Secrétaire de département
 INSERT INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
-('PER_SEC_01', SHA2('Password123!',256), 'Lambert', 'Lea', 'Saint-Lo', '1972-02-29', 'lea.lambert@univ-caen.fr', '0600000016'),
-('PER_SEC_02', SHA2('Password123!',256), 'Fontaine', 'Nathan', 'Alencon', '1983-12-17', 'nathan.fontaine@univ-caen.fr', '0600000017'),
-('PER_SEC_03', SHA2('Password123!',256), 'Rousseau', 'Chloe', 'Bayeux', '1977-06-19', 'chloe.rousseau@univ-caen.fr', '0600000018');
+('PER_SEC_01', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Lambert', 'Lea', 'Saint-Lo', '1972-02-29', 'lea.lambert@univ-caen.fr', '0600000016'),
+('PER_SEC_02', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Fontaine', 'Nathan', 'Alencon', '1983-12-17', 'nathan.fontaine@univ-caen.fr', '0600000017'),
+('PER_SEC_03', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Rousseau', 'Chloe', 'Bayeux', '1977-06-19', 'chloe.rousseau@univ-caen.fr', '0600000018');
 
--- 305  Administration / Responsable des vacataires
+-- 305  Administration / Representant des vacataires
 INSERT INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
-('PER_RVC_01', SHA2('Password123!',256), 'Vincent', 'Maxime', 'Cabourg', '1974-08-29', 'maxime.vincent@univ-caen.fr', '0600000019'),
-('PER_RVC_02', SHA2('Password123!',256), 'Muller', 'Manon', 'Rouen', '1980-02-06', 'manon.muller@univ-caen.fr', '0600000020'),
-('PER_RVC_03', SHA2('Password123!',256), 'Faure', 'Alexandre', 'Evreux', '1969-02-28', 'alexandre.faure@univ-caen.fr', '0600000021');
+('PER_RVC_01', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Vincent', 'Maxime', 'Cabourg', '1974-08-29', 'maxime.vincent@univ-caen.fr', '0600000019'),
+('PER_RVC_02', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Muller', 'Manon', 'Rouen', '1980-02-06', 'manon.muller@univ-caen.fr', '0600000020'),
+('PER_RVC_03', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Faure', 'Alexandre', 'Evreux', '1969-02-28', 'alexandre.faure@univ-caen.fr', '0600000021');
 
 -- 401  Autre / Utilisateur connecté
 INSERT INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
-('PER_UCO_01', SHA2('Password123!',256), 'Andre', 'Sarah', 'Alencon', '1969-05-04', 'sarah.andre@mail.fr', '0600000022'),
-('PER_UCO_02', SHA2('Password123!',256), 'Mercier', 'Paul', 'Honfleur', '1980-06-06', 'paul.mercier@mail.fr', '0600000023'),
-('PER_UCO_03', SHA2('Password123!',256), 'Blanc', 'Ines', 'Cabourg', '1976-11-12', 'ines.blanc@mail.fr', '0600000024');
+('PER_UCO_01', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Andre', 'Sarah', 'Alencon', '1969-05-04', 'sarah.andre@mail.fr', '0600000022'),
+('PER_UCO_02', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Mercier', 'Paul', 'Honfleur', '1980-06-06', 'paul.mercier@mail.fr', '0600000023'),
+('PER_UCO_03', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Blanc', 'Ines', 'Cabourg', '1976-11-12', 'ines.blanc@mail.fr', '0600000024');
 
 -- 501  Enseignant / Directeur des études
 INSERT INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
-('PER_DET_01', SHA2('Password123!',256), 'Guerin', 'Pierre', 'Saint-Lo', '1966-12-13', 'pierre.guerin@univ-caen.fr', '0600000025'),
-('PER_DET_02', SHA2('Password123!',256), 'Boyer', 'Marie', 'Cherbourg', '1985-08-11', 'marie.boyer@univ-caen.fr', '0600000026'),
-('PER_DET_03', SHA2('Password123!',256), 'Garnier', 'Nicolas', 'Evreux', '1970-08-08', 'nicolas.garnier@univ-caen.fr', '0600000027');
+('PER_DET_01', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Guerin', 'Pierre', 'Saint-Lo', '1966-12-13', 'pierre.guerin@univ-caen.fr', '0600000025'),
+('PER_DET_02', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Boyer', 'Marie', 'Cherbourg', '1985-08-11', 'marie.boyer@univ-caen.fr', '0600000026'),
+('PER_DET_03', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Garnier', 'Nicolas', 'Evreux', '1970-08-08', 'nicolas.garnier@univ-caen.fr', '0600000027');
 
 -- 502  Enseignant / Enseignant titulaire
 INSERT INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
-('PER_TIT_01', SHA2('Password123!',256), 'Chevalier', 'Julie', 'Cherbourg', '1968-07-15', 'julie.chevalier@univ-caen.fr', '0600000028'),
-('PER_TIT_02', SHA2('Password123!',256), 'Legrand', 'David', 'Coutances', '1978-02-25', 'david.legrand@univ-caen.fr', '0600000029'),
-('PER_TIT_03', SHA2('Password123!',256), 'Gauthier', 'Celine', 'Honfleur', '1981-03-23', 'celine.gauthier@univ-caen.fr', '0600000030');
+('PER_TIT_01', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Chevalier', 'Julie', 'Cherbourg', '1968-07-15', 'julie.chevalier@univ-caen.fr', '0600000028'),
+('PER_TIT_02', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Legrand', 'David', 'Coutances', '1978-02-25', 'david.legrand@univ-caen.fr', '0600000029'),
+('PER_TIT_03', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Gauthier', 'Celine', 'Honfleur', '1981-03-23', 'celine.gauthier@univ-caen.fr', '0600000030');
 
 -- 503  Enseignant / Enseignant vacataire
 INSERT INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
-('PER_VAC_01', SHA2('Password123!',256), 'Perrin', 'Francois', 'Saint-Lo', '1973-08-17', 'francois.perrin@mail.fr', '0600000031'),
-('PER_VAC_02', SHA2('Password123!',256), 'Robin', 'Anne', 'Caen', '1968-02-14', 'anne.robin@mail.fr', '0600000032'),
-('PER_VAC_03', SHA2('Password123!',256), 'Clement', 'Eric', 'Cabourg', '1975-03-23', 'eric.clement@mail.fr', '0600000033');
+('PER_VAC_01', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Perrin', 'Francois', 'Saint-Lo', '1973-08-17', 'francois.perrin@mail.fr', '0600000031'),
+('PER_VAC_02', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Robin', 'Anne', 'Caen', '1968-02-14', 'anne.robin@mail.fr', '0600000032'),
+('PER_VAC_03', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Clement', 'Eric', 'Cabourg', '1975-03-23', 'eric.clement@mail.fr', '0600000033');
 
--- 504  Enseignant / Responsable de stage enseignant
+-- 504  Enseignant / Representant de stage enseignant
 INSERT INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
-('PER_RST_01', SHA2('Password123!',256), 'Morin', 'Sandrine', 'Rouen', '1977-12-25', 'sandrine.morin@univ-caen.fr', '0600000034'),
-('PER_RST_02', SHA2('Password123!',256), 'Nicolas', 'Pascal', 'Coutances', '1975-06-12', 'pascal.nicolas@univ-caen.fr', '0600000035'),
-('PER_RST_03', SHA2('Password123!',256), 'Henry', 'Valerie', 'Evreux', '1969-07-13', 'valerie.henry@univ-caen.fr', '0600000036');
+('PER_RST_01', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Morin', 'Sandrine', 'Rouen', '1977-12-25', 'sandrine.morin@univ-caen.fr', '0600000034'),
+('PER_RST_02', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Nicolas', 'Pascal', 'Coutances', '1975-06-12', 'pascal.nicolas@univ-caen.fr', '0600000035'),
+('PER_RST_03', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Henry', 'Valerie', 'Evreux', '1969-07-13', 'valerie.henry@univ-caen.fr', '0600000036');
 
 -- 601  Étudiant / Étudiant
 INSERT INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
-('PER_ETU_01', SHA2('Password123!',256), 'Roussel', 'Stephane', 'Falaise', '2004-07-23', 'stephane.roussel@etu.unicaen.fr', '0600000037'),
-('PER_ETU_02', SHA2('Password123!',256), 'Mathieu', 'Laura', 'Coutances', '2006-07-25', 'laura.mathieu@etu.unicaen.fr', '0600000038'),
-('PER_ETU_03', SHA2('Password123!',256), 'Masson', 'Kevin', 'Bayeux', '2005-01-17', 'kevin.masson@etu.unicaen.fr', '0600000039');
+('PER_ETU_01', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Roussel', 'Stephane', 'Falaise', '2004-07-23', 'stephane.roussel@etu.unicaen.fr', '0600000037'),
+('PER_ETU_02', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Mathieu', 'Laura', 'Coutances', '2006-07-25', 'laura.mathieu@etu.unicaen.fr', '0600000038'),
+('PER_ETU_03', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Masson', 'Kevin', 'Bayeux', '2005-01-17', 'kevin.masson@etu.unicaen.fr', '0600000039');
 
 -- 602  Étudiant / Étudiant apprenti
 INSERT INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
-('PER_APP_01', SHA2('Password123!',256), 'Marchand', 'Pauline', 'Alencon', '2005-01-28', 'pauline.marchand@etu.unicaen.fr', '0600000040'),
-('PER_APP_02', SHA2('Password123!',256), 'Duval', 'Romain', 'Deauville', '2004-03-05', 'romain.duval@etu.unicaen.fr', '0600000041'),
-('PER_APP_03', SHA2('Password123!',256), 'Denis', 'Elodie', 'Saint-Lo', '2004-06-30', 'elodie.denis@etu.unicaen.fr', '0600000042');
+('PER_APP_01', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Marchand', 'Pauline', 'Alencon', '2005-01-28', 'pauline.marchand@etu.unicaen.fr', '0600000040'),
+('PER_APP_02', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Duval', 'Romain', 'Deauville', '2004-03-05', 'romain.duval@etu.unicaen.fr', '0600000041'),
+('PER_APP_03', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Denis', 'Elodie', 'Saint-Lo', '2004-06-30', 'elodie.denis@etu.unicaen.fr', '0600000042');
 
 -- 603  Étudiant / Étudiant BDE
 INSERT INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
-('PER_BDE_01', SHA2('Password123!',256), 'Dumont', 'Mathieu', 'Deauville', '2006-10-31', 'mathieu.dumont@etu.unicaen.fr', '0600000043'),
-('PER_BDE_02', SHA2('Password123!',256), 'Lemaire', 'Aurelie', 'Honfleur', '2003-05-27', 'aurelie.lemaire@etu.unicaen.fr', '0600000044'),
-('PER_BDE_03', SHA2('Password123!',256), 'Noel', 'Quentin', 'Bayeux', '2006-07-24', 'quentin.noel@etu.unicaen.fr', '0600000045');
+('PER_BDE_01', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Dumont', 'Mathieu', 'Deauville', '2006-10-31', 'mathieu.dumont@etu.unicaen.fr', '0600000043'),
+('PER_BDE_02', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Lemaire', 'Aurelie', 'Honfleur', '2003-05-27', 'aurelie.lemaire@etu.unicaen.fr', '0600000044'),
+('PER_BDE_03', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Noel', 'Quentin', 'Bayeux', '2006-07-24', 'quentin.noel@etu.unicaen.fr', '0600000045');
 
 -- 604  Étudiant / Étudiant élu
 INSERT INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
-('PER_ELU_01', SHA2('Password123!',256), 'Meyer', 'Justine', 'Saint-Lo', '2005-12-29', 'justine.meyer@etu.unicaen.fr', '0600000046'),
-('PER_ELU_02', SHA2('Password123!',256), 'Dufour', 'Adrien', 'Bayeux', '2004-05-16', 'adrien.dufour@etu.unicaen.fr', '0600000047'),
-('PER_ELU_03', SHA2('Password123!',256), 'Meunier', 'Marine', 'Evreux', '2005-08-04', 'marine.meunier@etu.unicaen.fr', '0600000048');
+('PER_ELU_01', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Meyer', 'Justine', 'Saint-Lo', '2005-12-29', 'justine.meyer@etu.unicaen.fr', '0600000046'),
+('PER_ELU_02', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Dufour', 'Adrien', 'Bayeux', '2004-05-16', 'adrien.dufour@etu.unicaen.fr', '0600000047'),
+('PER_ELU_03', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Meunier', 'Marine', 'Evreux', '2005-08-04', 'marine.meunier@etu.unicaen.fr', '0600000048');
 
 -- 701  Externe / Étudiant Ambassadeur
 INSERT INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
-('PER_AMB_01', SHA2('Password123!',256), 'Brun', 'Theo', 'Deauville', '2004-07-06', 'theo.brun@etu.unicaen.fr', '0600000049'),
-('PER_AMB_02', SHA2('Password123!',256), 'Blanchard', 'Clara', 'Cherbourg', '2006-11-10', 'clara.blanchard@etu.unicaen.fr', '0600000050'),
-('PER_AMB_03', SHA2('Password123!',256), 'Giraud', 'Louis', 'Deauville', '2004-03-25', 'louis.giraud@etu.unicaen.fr', '0600000051');
+('PER_AMB_01', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Brun', 'Theo', 'Deauville', '2004-07-06', 'theo.brun@etu.unicaen.fr', '0600000049'),
+('PER_AMB_02', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Blanchard', 'Clara', 'Cherbourg', '2006-11-10', 'clara.blanchard@etu.unicaen.fr', '0600000050'),
+('PER_AMB_03', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Giraud', 'Louis', 'Deauville', '2004-03-25', 'louis.giraud@etu.unicaen.fr', '0600000051');
 
 -- 702  Externe / Personnel CROUS
 INSERT INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
-('PER_CRO_01', SHA2('Password123!',256), 'Joly', 'Alice', 'Coutances', '1979-07-20', 'alice.joly@crous-normandie.fr', '0600000052'),
-('PER_CRO_02', SHA2('Password123!',256), 'Riviere', 'Jules', 'Lisieux', '1967-07-06', 'jules.riviere@crous-normandie.fr', '0600000053'),
-('PER_CRO_03', SHA2('Password123!',256), 'Lucas', 'Lena', 'Cabourg', '1966-06-10', 'lena.lucas@crous-normandie.fr', '0600000054');
+('PER_CRO_01', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Joly', 'Alice', 'Coutances', '1979-07-20', 'alice.joly@crous-normandie.fr', '0600000052'),
+('PER_CRO_02', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Riviere', 'Jules', 'Lisieux', '1967-07-06', 'jules.riviere@crous-normandie.fr', '0600000053'),
+('PER_CRO_03', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Lucas', 'Lena', 'Cabourg', '1966-06-10', 'lena.lucas@crous-normandie.fr', '0600000054');
 
 -- 703  Externe / Personnel SSE
 INSERT INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
-('PER_SSE_01', SHA2('Password123!',256), 'Brunet', 'Arthur', 'Evreux', '1979-02-25', 'arthur.brunet@univ-caen.fr', '0600000055'),
-('PER_SSE_02', SHA2('Password123!',256), 'Gaillard', 'Zoe', 'Rouen', '1977-01-04', 'zoe.gaillard@univ-caen.fr', '0600000056'),
-('PER_SSE_03', SHA2('Password123!',256), 'Barbier', 'Victor', 'Honfleur', '1974-06-19', 'victor.barbier@univ-caen.fr', '0600000057');
+('PER_SSE_01', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Brunet', 'Arthur', 'Evreux', '1979-02-25', 'arthur.brunet@univ-caen.fr', '0600000055'),
+('PER_SSE_02', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Gaillard', 'Zoe', 'Rouen', '1977-01-04', 'zoe.gaillard@univ-caen.fr', '0600000056'),
+('PER_SSE_03', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Barbier', 'Victor', 'Honfleur', '1974-06-19', 'victor.barbier@univ-caen.fr', '0600000057');
 
 -- 704  Externe / Utilisateur non connecté
 INSERT INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
-('PER_UNC_01', SHA2('Password123!',256), 'Arnaud', 'Margaux', 'Lisieux', '1979-02-12', 'margaux.arnaud@mail.fr', '0600000058'),
-('PER_UNC_02', SHA2('Password123!',256), 'Martinez', 'Gabriel', 'Evreux', '1987-05-25', 'gabriel.martinez@mail.fr', '0600000059'),
-('PER_UNC_03', SHA2('Password123!',256), 'Gerard', 'Eva', 'Bayeux', '1985-08-01', 'eva.gerard@mail.fr', '0600000060');
+('PER_UNC_01', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Arnaud', 'Margaux', 'Lisieux', '1979-02-12', 'margaux.arnaud@mail.fr', '0600000058'),
+('PER_UNC_02', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Martinez', 'Gabriel', 'Evreux', '1987-05-25', 'gabriel.martinez@mail.fr', '0600000059'),
+('PER_UNC_03', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Gerard', 'Eva', 'Bayeux', '1985-08-01', 'eva.gerard@mail.fr', '0600000060');
 
--- 705  Externe / Responsable entreprise stage
+-- 705  Externe / Representant entreprise stage
 INSERT INTO TD_PERSONNE (PER_ID, PER_PASSWORD, PER_NOM, PER_PRENOM, PER_VILLE_NAISSANCE, PER_DATE_NAISSANCE, PER_MAIL, PER_TELEPHONE) VALUES
-('PER_REP_01', SHA2('Password123!',256), 'Colin', 'Raphael', 'Bayeux', '1976-11-18', 'raphael.colin@normantech.fr', '0600000061'),
-('PER_REP_02', SHA2('Password123!',256), 'Hamon', 'Jade', 'Saint-Lo', '1976-01-24', 'jade.hamon@calvadosdata.fr', '0600000062'),
-('PER_REP_03', SHA2('Password123!',256), 'Lopez', 'Leo', 'Cherbourg', '1990-03-08', 'leo.lopez@cotentin.fr', '0600000063');
+('PER_REP_01', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Colin', 'Raphael', 'Bayeux', '1976-11-18', 'raphael.colin@normantech.fr', '0600000061'),
+('PER_REP_02', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Hamon', 'Jade', 'Saint-Lo', '1976-01-24', 'jade.hamon@calvadosdata.fr', '0600000062'),
+('PER_REP_03', '$2y$12$my4yuNCRekHtL5X3ek7/je2bknaUPcqcJsD75A3jfdexfhulbYpVm', 'Lopez', 'Leo', 'Cherbourg', '1990-03-08', 'leo.lopez@cotentin.fr', '0600000063');
 
 -- 1 role par utilisateur, 3 utilisateurs par role
 INSERT INTO TD_ATTRIBUE (PER_ID, ROL_ID) VALUES
