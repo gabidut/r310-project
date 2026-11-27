@@ -4,3 +4,5 @@
 *.log
 *.tmp
 back/.env
+
+**/node_modules/
