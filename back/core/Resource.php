@@ -10,18 +10,19 @@ namespace core;
  * l'envoi des réponses HTTP JSON (élément unique, collection ou erreur).
  *
  * @author  Noah Quaghebeur
- * @version 1.0
+ * @version 1.2
  */
 abstract class Resource
 {
-    protected array $resource;
+    protected array|object $resource;
 
     /**
      * Initialise la ressource avec les données brutes issues de la base de données
      *
-     * @param array $resource Tableau associatif représentant une ligne de données à formater
+     * @param array|object $resource Tableau associatif représentant une ligne de données à formater
      */
-    public function __construct(array $resource)
+
+    public function __construct(array|object $resource)
     {
         $this->resource = $resource;
     }
@@ -39,7 +40,7 @@ abstract class Resource
      */
     public function send(int $status = 200): void
     {
-        self::respond($this->toArray(), $status);
+        self::respond(['data'=>$this->toArray()], $status);
     }
 
     /**
@@ -51,7 +52,7 @@ abstract class Resource
      */
     public static function error(string $message, int $status = 400): void
     {
-        self::respond(['error' => $message], $status);
+        self::respond(['message' => $message], $status);
     }
 
     /**
@@ -81,7 +82,7 @@ abstract class Resource
     {
         http_response_code($status);
         header('Content-Type: application/json; charset=utf-8');
-        echo json_encode($data, JSON_UNESCAPED_UNICODE);
+        echo json_encode(array_merge(['status' => $status], $data), JSON_UNESCAPED_UNICODE);
         exit;
     }
 }
