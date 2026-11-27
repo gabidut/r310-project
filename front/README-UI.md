@@ -249,7 +249,7 @@ Conformes aux bordures rouge `#D13627` et verte `#28B870` du SVG :
         <label for="user-pass" class="form-label">Mot de passe</label>
         <div class="input-icon-group">
             <i class="bi bi-key input-icon-left"></i>
-            <input type="password" id="user-pass" class="form-control" placeholder="••••••••" required />
+            <input type="passwword" id="user-pass" class="form-control" placeholder="••••••••" required />
             <button type="button" class="input-icon-right input-icon-action" title="Afficher">
                 <i class="bi bi-eye"></i>
             </button>
