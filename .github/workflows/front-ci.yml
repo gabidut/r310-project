@@ -27,20 +27,54 @@ jobs:
         with:
           node-version: "22"
 
-      - name: Install dependencies (if package.json exists)
+      - name: Install dependencies
         run: |
           if [ -f package.json ]; then
             npm ci
+          else
+            npm install --no-save htmlhint stylelint stylelint-config-standard eslint @eslint/js globals
           fi
 
       - name: Lint HTML
-        run: npx --yes htmlhint "**/*.html"
+        run: |
+          if [ -f .htmlhintrc ]; then
+            npx htmlhint "**/*.html"
+          else
+            npx htmlhint "**/*.html" --config <(echo '{"doctype-first":true,"tag-pair":true,"attr-value-double-quotes":true,"id-unique":true,"src-not-empty":true}')
+          fi
 
       - name: Lint CSS
-        run: npx --yes stylelint "**/*.css" --allow-empty-input
+        run: |
+          if [ -f .stylelintrc.json ] || [ -f stylelint.config.js ] || [ -f stylelint.config.mjs ]; then
+            npx stylelint "**/*.css" --allow-empty-input
+          else
+            npx stylelint "**/*.css" --allow-empty-input --config <(echo '{"extends":"stylelint-config-standard","rules":{"no-descending-specificity":null}}')
+          fi
 
       - name: Lint JS
-        run: npx --yes eslint "**/*.js" --no-warn-ignored
+        run: |
+          if [ -f eslint.config.js ] || [ -f eslint.config.mjs ]; then
+            npx eslint "**/*.js" --no-warn-ignored
+          else
+            cat << 'EOF' > /tmp/eslint.config.mjs
+          import js from "@eslint/js";
+          import globals from "globals";
+          export default [
+            js.configs.recommended,
+            {
+              languageOptions: {
+                ecmaVersion: "latest",
+                sourceType: "script",
+                globals: { ...globals.browser }
+              },
+              rules: {
+                "no-unused-vars": "warn"
+              }
+            }
+          ];
+          EOF
+            npx eslint "**/*.js" --no-warn-ignored --config /tmp/eslint.config.mjs
+          fi
 
   security:
     name: Security Check

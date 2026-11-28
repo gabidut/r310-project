@@ -1,0 +1,13 @@
+@import url("bootstrap-icons/font/bootstrap-icons.css");
+@import url("./variables.css");
+@import url("./buttons.css");
+@import url("./inputs.css");
+
+body {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    font-family: var(--font-base, system-ui, sans-serif);
+    color: var(--color-text-dark, #121211);
+    background-color: #FAFAFA;
+}

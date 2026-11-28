@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Connexion — Campus 3</title>
+</head>
+<body>
+<div class="login-page-wrapper">
+    <div class="login-card">
+        <div class="login-header">
+            <div class="login-badge-icon">
+                <i class="bi bi-shield-lock-fill"></i>
+            </div>
+            <h1 class="login-title">Connexion</h1>
+            <p class="login-subtitle">Accédez aux services numériques du Campus 3 (Projet R310)</p>
+        </div>
+
+        <div id="already-logged-in" class="login-alert alert-info" style="display: none;">
+            <i class="bi bi-info-circle-fill"></i>
+            <div>
+                <p>Vous êtes déjà connecté en tant que <strong id="logged-user-name">...</strong>.</p>
+                <div style="margin-top: 10px; display: flex; gap: 8px;">
+                    <a href="/" data-link class="btn btn-primary btn-sm">
+                        <i class="bi bi-house-door"></i> Accueil
+                    </a>
+                    <button type="button" id="btn-force-logout" class="btn btn-secondary btn-sm">
+                        <i class="bi bi-box-arrow-right"></i> Changer de compte
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="login-error-alert" class="login-alert alert-danger" style="display: none;" role="alert">
+            <i class="bi bi-exclamation-triangle-fill"></i>
+            <span id="login-error-text">Une erreur est survenue</span>
+        </div>
+
+        <div id="login-success-alert" class="login-alert alert-success" style="display: none;" role="alert">
+            <i class="bi bi-check-circle-fill"></i>
+            <span id="login-success-text">Connexion réussie ! Redirection...</span>
+        </div>
+
+        <form id="login-form" novalidate>
+            <div class="form-group">
+                <label for="login-email" class="form-label">
+                    <i class="bi bi-envelope"></i> Adresse e-mail
+                </label>
+                <input
+                    type="email"
+                    id="login-email"
+                    name="email"
+                    class="form-control form-control-md"
+                    placeholder="exemple@univ-caen.fr"
+                    autocomplete="username"
+                    required
+                />
+            </div>
+
+            <div class="form-group">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <label for="login-password" class="form-label">
+                        <i class="bi bi-key"></i> Mot de passe
+                    </label>
+                </div>
+                <div class="password-input-wrapper">
+                    <input
+                        type="password"
+                        id="login-password"
+                        name="password"
+                        class="form-control form-control-md"
+                        placeholder="••••••••••••"
+                        autocomplete="current-password"
+                        required
+                    />
+                    <button type="button" id="toggle-password-btn" class="btn-toggle-pwd" aria-label="Afficher/masquer le mot de passe">
+                        <i class="bi bi-eye" id="toggle-password-icon"></i>
+                    </button>
+                </div>
+            </div>
+
+            <button type="submit" id="login-submit-btn" class="btn btn-primary btn-lg" style="width: 100%; margin-top: 8px;">
+                <i class="bi bi-box-arrow-in-right" id="login-btn-icon"></i>
+                <span id="login-btn-text">Se connecter</span>
+            </button>
+        </form>
+
+        <div class="demo-accounts-section">
+            <p class="demo-accounts-title">
+                <i class="bi bi-lightning-charge"></i> Comptes de test (cliquez pour préremplir)
+            </p>
+            <div class="demo-badges-grid">
+                <button type="button" class="demo-badge-btn" data-email="claire.martin@univ-caen.fr">
+                    <strong>Claire Martin</strong>
+                    <small>Administrateur (101)</small>
+                </button>
+                <button type="button" class="demo-badge-btn" data-email="laurent.simon@univ-caen.fr">
+                    <strong>Laurent Simon</strong>
+                    <small>Chef de département (301)</small>
+                </button>
+                <button type="button" class="demo-badge-btn" data-email="jean.durand@univ-caen.fr">
+                    <strong>Jean Durand</strong>
+                    <small>Resp. validation heures (201)</small>
+                </button>
+                <button type="button" class="demo-badge-btn" data-email="theo.brun@etu.unicaen.fr">
+                    <strong>Théo Brun</strong>
+                    <small>Étudiant Ambassadeur (701)</small>
+                </button>
+            </div>
+            <p class="demo-hint">Mot de passe pour tous les comptes : <code>Password123!</code></p>
+        </div>
+    </div>
+</div>
+
+<style>
+.login-page-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 120px);
+    padding: 30px 16px;
+    box-sizing: border-box;
+    background: radial-gradient(circle at 50% 20%, rgba(30, 82, 80, 0.08), transparent 60%);
+}
+
+.login-card {
+    width: 100%;
+    max-width: 460px;
+    background: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    border-radius: var(--radius-lg, 12px);
+    padding: 32px 28px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.06), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.login-badge-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: rgba(30, 82, 80, 0.1);
+    color: var(--color-primary, #1E5250);
+    font-size: 26px;
+    margin-bottom: 12px;
+}
+
+.login-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--color-text-dark, #121211);
+    margin: 0 0 6px 0;
+}
+
+.login-subtitle {
+    font-size: 14px;
+    color: var(--color-text-muted, #757575);
+    margin: 0;
+    line-height: 1.4;
+}
+
+.login-alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: var(--radius-md, 8px);
+    font-size: 14px;
+    line-height: 1.4;
+    margin-bottom: 20px;
+}
+
+.login-alert.alert-danger {
+    background-color: #FDEDED;
+    border: 1px solid var(--color-danger, #D13627);
+    color: var(--color-danger, #D13627);
+}
+
+.login-alert.alert-success {
+    background-color: #E8F8F0;
+    border: 1px solid var(--color-success-border, #28B870);
+    color: var(--color-success-text, #1EA05A);
+}
+
+.login-alert.alert-info {
+    background-color: #EBF3F3;
+    border: 1px solid var(--color-primary, #1E5250);
+    color: var(--color-primary, #1E5250);
+}
+
+.password-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-input-wrapper input {
+    padding-right: 44px;
+}
+
+.btn-toggle-pwd {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: #6B7280;
+    cursor: pointer;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm, 6px);
+    font-size: 16px;
+}
+
+.btn-toggle-pwd:hover {
+    color: var(--color-primary, #1E5250);
+}
+
+.demo-accounts-section {
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px dashed #E0E0E0;
+}
+
+.demo-accounts-title {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #666666;
+    margin: 0 0 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.demo-badges-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.demo-badge-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px 10px;
+    border: 1px solid #D5D5D5;
+    background-color: #F8F9F9;
+    border-radius: var(--radius-sm, 6px);
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.15s ease;
+}
+
+.demo-badge-btn:hover {
+    background-color: #EBF3F3;
+    border-color: var(--color-primary, #1E5250);
+    transform: translateY(-1px);
+}
+
+.demo-badge-btn strong {
+    font-size: 12px;
+    color: var(--color-text-dark, #121211);
+}
+
+.demo-badge-btn small {
+    font-size: 11px;
+    color: #777777;
+}
+
+.demo-hint {
+    margin: 10px 0 0 0;
+    font-size: 11px;
+    color: #888888;
+    text-align: center;
+}
+
+.demo-hint code {
+    background: #EEEEEE;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 600;
+    color: var(--color-primary, #1E5250);
+}
+</style>
+
+<script type="module">
+(function() {
+    const form = document.getElementById('login-form');
+    const emailInput = document.getElementById('login-email');
+    const passwordInput = document.getElementById('login-password');
+    const submitBtn = document.getElementById('login-submit-btn');
+    const btnText = document.getElementById('login-btn-text');
+    const btnIcon = document.getElementById('login-btn-icon');
+    const errorAlert = document.getElementById('login-error-alert');
+    const errorText = document.getElementById('login-error-text');
+    const successAlert = document.getElementById('login-success-alert');
+    const successText = document.getElementById('login-success-text');
+    const alreadyLoggedInAlert = document.getElementById('already-logged-in');
+    const loggedUserName = document.getElementById('logged-user-name');
+    const btnForceLogout = document.getElementById('btn-force-logout');
+    const togglePasswordBtn = document.getElementById('toggle-password-btn');
+    const togglePasswordIcon = document.getElementById('toggle-password-icon');
+
+    // Vérifie si un utilisateur est déjà connecté
+    const currentUser = window.apiHelper?.getUser();
+    if (currentUser) {
+        if (alreadyLoggedInAlert && loggedUserName) {
+            loggedUserName.textContent = `${currentUser.prenom || currentUser.PER_PRENOM || ''} ${currentUser.nom || currentUser.PER_NOM || ''}`.trim() || currentUser.email || 'Utilisateur';
+            alreadyLoggedInAlert.style.display = 'flex';
+        }
+    }
+
+    if (btnForceLogout) {
+        btnForceLogout.addEventListener('click', async () => {
+            await window.apiHelper?.logout();
+            if (alreadyLoggedInAlert) alreadyLoggedInAlert.style.display = 'none';
+            if (emailInput) emailInput.value = '';
+            if (passwordInput) passwordInput.value = '';
+        });
+    }
+
+    // Basculer l'affichage du mot de passe
+    if (togglePasswordBtn && passwordInput && togglePasswordIcon) {
+        togglePasswordBtn.addEventListener('click', () => {
+            const isPassword = passwordInput.getAttribute('type') === 'password';
+            passwordInput.setAttribute('type', isPassword ? 'text' : 'password');
+            togglePasswordIcon.className = isPassword ? 'bi bi-eye-slash' : 'bi bi-eye';
+        });
+    }
+
+    // Préremplissage avec les comptes de démonstration
+    document.querySelectorAll('.demo-badge-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+            const email = btn.getAttribute('data-email');
+            if (emailInput) emailInput.value = email;
+            if (passwordInput) passwordInput.value = 'Password123!';
+            if (errorAlert) errorAlert.style.display = 'none';
+            emailInput?.focus();
+        });
+    });
+
+    // Soumission du formulaire
+    if (form) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const email = (emailInput?.value || '').trim();
+            const password = passwordInput?.value || '';
+
+            if (!email || !password) {
+                showError('Veuillez renseigner votre adresse email et votre mot de passe.');
+                return;
+            }
+
+            setLoading(true);
+            hideMessages();
+
+            try {
+                const { data, error, errorMessage, ok } = await window.apiHelper.safe(() =>
+                    window.apiHelper.login(email, password)
+                );
+
+                if (!ok || error) {
+                    showError(errorMessage || 'Identifiants invalides. Veuillez vérifier votre saisie.');
+                    setLoading(false);
+                    return;
+                }
+
+                showSuccess('Connexion réussie ! Chargement de votre espace...');
+
+                // Redirige vers la page d'accueil après 400ms
+                setTimeout(() => {
+                    if (window.router?.navigateTo) {
+                        window.router.navigateTo('/');
+                    } else {
+                        window.location.href = '/';
+                    }
+                }, 400);
+
+            } catch (err) {
+                showError(err.message || 'Impossible de joindre le serveur. Vérifiez votre connexion.');
+                setLoading(false);
+            }
+        });
+    }
+
+    function showError(msg) {
+        if (errorAlert && errorText) {
+            errorText.textContent = msg;
+            errorAlert.style.display = 'flex';
+        }
+        if (successAlert) successAlert.style.display = 'none';
+    }
+
+    function showSuccess(msg) {
+        if (successAlert && successText) {
+            successText.textContent = msg;
+            successAlert.style.display = 'flex';
+        }
+        if (errorAlert) errorAlert.style.display = 'none';
+    }
+
+    function hideMessages() {
+        if (errorAlert) errorAlert.style.display = 'none';
+        if (successAlert) successAlert.style.display = 'none';
+    }
+
+    function setLoading(isLoading) {
+        if (!submitBtn || !btnText || !btnIcon) return;
+        submitBtn.disabled = isLoading;
+        if (isLoading) {
+            btnText.textContent = 'Connexion en cours...';
+            btnIcon.className = 'bi bi-arrow-repeat spin';
+        } else {
+            btnText.textContent = 'Se connecter';
+            btnIcon.className = 'bi bi-box-arrow-in-right';
+        }
+    }
+})();
+</script>
+</body>
+</html>
