@@ -3,6 +3,7 @@
 *.iml
 *.log
 *.tmp
-
-
 node_modules/
+**.migrations_cache
+**/dist
+**.env
