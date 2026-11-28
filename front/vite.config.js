@@ -5,8 +5,7 @@ export default defineConfig({
         proxy: {
             '/back': {
                 target: 'http://localhost:8000',
-                changeOrigin: true,
-                rewrite: (path) => path.replace(/^\/back/, '')
+                changeOrigin: true
             }
         }
     }

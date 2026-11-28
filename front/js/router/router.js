@@ -10,7 +10,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     const router = new Router();
     window.router = router;
 
-    router.addRoute(new Route("/", "./views/main.html", []));
+    router.addRoute(new Route("/", "./views/main.html", ["navbar"]));
+    router.addRoute(new Route("/login", "./views/login.html", ["navbar"]));
 
     for (const route of moduleLoader.getAllRoutes()) {
         router.addRoute(route);

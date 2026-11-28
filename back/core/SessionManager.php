@@ -84,7 +84,10 @@ class SessionManager
     public function getUser(): ?Personne
     {
         $user = $_SESSION['user'] ?? null;
-        return $user instanceof Personne ? $user : null;
+        if ($user instanceof Personne) {
+            return $user;
+        }
+        return is_array($user) ? Personne::fromArray($user) : null;
     }
 
     /**
@@ -163,9 +166,7 @@ class SessionManager
      */
     public function all(): ?Personne
     {
-        $user = $_SESSION['user'] ?? null;
-
-        return $user === null ? null : Personne::fromArray($user);
+        return $this->getUser();
     }
 
     /**

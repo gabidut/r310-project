@@ -15,5 +15,6 @@ loadModules($router);
 $router->addRoute('','controllers\RootController@index','GET');
 $router->addRoute('auth/login','controllers\AuthController@login','POST');
 $router->addRoute('auth/me','controllers\AuthController@me','GET');
+$router->addRoute('auth/logout','controllers\AuthController@logout','POST');
 
 $router->route($_SERVER['REQUEST_URI'] ?? '/');

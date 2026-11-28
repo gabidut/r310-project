@@ -3,7 +3,7 @@
 namespace resources;
 
 use core\Resource;
-use models\Personne;
+use models\acteurs\Personne;
 
 /**
  * Ressource API formatant le profil de l'utilisateur actuellement connecté (route /me).
@@ -14,11 +14,10 @@ use models\Personne;
  *
  * @property Personne $resource
  * @author   Noah Quaghebeur
- * @version  1.0
+ * @version  1.1
  */
 class MeResource extends Resource
 {
-
     /**
      * Initialise la ressource avec l'instance de la personne authentifiée.
      *
@@ -32,13 +31,21 @@ class MeResource extends Resource
     /**
      * Convertit l'objet Personne et ses rôles en tableau associatif pour la réponse JSON.
      *
-     * @return array<string, mixed> Propriétés publiques de Personne enrichies de la clé 'roles'.
+     * @return array<string, mixed> Propriétés publiques enrichies d'alias conviviaux et de la liste des rôles.
      */
     public function toArray(): array
     {
+        $rawVars = get_object_vars($this->resource);
+        $roles = $this->resource->getRoles() ?: [];
+
         return [
-            ...get_object_vars($this->resource),
-            'roles' => $this->resource->getRoles(),
+            ...$rawVars,
+            'id'        => $this->resource->PER_ID,
+            'nom'       => $this->resource->PER_NOM,
+            'prenom'    => $this->resource->PER_PRENOM,
+            'email'     => $this->resource->PER_MAIL,
+            'telephone' => $this->resource->PER_TELEPHONE,
+            'roles'     => $roles,
         ];
     }
 }
