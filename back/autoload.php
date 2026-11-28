@@ -4,6 +4,8 @@ use core\Router;
 
 $GLOBALS['moduleManifests'] = [];
 
+require_once __DIR__ . '/db/Database.php';
+
 spl_autoload_register(function ($class) {
     $normalized = str_replace('\\', '/', $class);
 
@@ -33,6 +35,22 @@ spl_autoload_register(function ($class) {
             return;
         }
     }
+
+    // sous-dossiers de models/
+    $modelsDir = __DIR__ . '/models';
+    if (is_dir($modelsDir)) {
+        foreach (scandir($modelsDir) as $subdir) {
+            if ($subdir === '.' || $subdir === '..') {
+                continue;
+            }
+            $subPath = $modelsDir . '/' . $subdir . '/' . $shortClass . '.php';
+            if (file_exists($subPath)) {
+                require_once $subPath;
+                return;
+            }
+        }
+    }
+
 });
 
 function loadModules(Router $router): void

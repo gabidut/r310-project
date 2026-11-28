@@ -4,24 +4,16 @@ require_once __DIR__ . '/autoload.php';
 
 use core\Router;
 
-if (isset($_SERVER['HTTP_ORIGIN'])) {
-    header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
-    header("Access-Control-Allow-Credentials: true");
-    header("Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, OPTIONS");
-    header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With, Accept");
+// Vérification des migrations à chaque requête si DB_AUTO_MIGRATE=true
+if (filter_var($_ENV['DB_AUTO_MIGRATE'] ?? getenv('DB_AUTO_MIGRATE') ?? false, FILTER_VALIDATE_BOOLEAN)) {
+    Database::checkMigrations();
 }
 
-if (($_SERVER['REQUEST_METHOD'] ?? '') === 'OPTIONS') {
-    http_response_code(204);
-    exit;
-}
-
-$prefix = getenv('ROUTER_PREFIX') !== false ? getenv('ROUTER_PREFIX') : trim(dirname($_SERVER['SCRIPT_NAME'] ?? ''), '/\\');
-if ($prefix === '.' || $prefix === '/') {
-    $prefix = '';
-}
-
-$router = new Router($prefix);
+$router = new Router('back');
 loadModules($router);
+
+$router->addRoute('','controllers\RootController@index','GET');
+$router->addRoute('auth/login','controllers\AuthController@login','POST');
+$router->addRoute('auth/me','controllers\AuthController@me','GET');
 
 $router->route($_SERVER['REQUEST_URI'] ?? '/');

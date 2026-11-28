@@ -2,6 +2,17 @@
 
 namespace core;
 
+/**
+ * Classe de base abstraite pour tous les contrôleurs de l'application
+ *
+ * Fournit l'accès automatique aux gestionnaires de session et de cookies,
+ * ainsi qu'un utilitaire de lecture des données entrantes (JSON ou formulaire).
+ *
+ * @author  Noah Quaghebeur
+ * @version 1.0
+ * @see SessionManager
+ * @see CookieManager
+ */
 abstract class Controller
 {
     protected SessionManager $session;
