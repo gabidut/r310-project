@@ -1,37 +1,121 @@
-# Projet R3.10
+# Front-End (SPA) - Projet R3.10
 
-## Fonctionnement du Front-End
+Application Single Page Application (SPA) en JavaScript vanilla, HTML et CSS, connectée à l'API PHP du back-end.
 
-Le front-end fonctionne via le procédé du [Single Page Application (SPA)](https://developer.mozilla.org/fr/docs/Glossary/SPA). Cela signifie que l'application est chargée une seule fois et que les différentes vues sont gérées par le JavaScript côté client, sans rechargement complet de la page.
-<br>Afin de tester, vous devez donc avoir un serveur web local capable de modifier les requêtes du clients pour qu'elles soient redirigées vers le fichier index.html. Pour cela vous avez un fichier .htaccess ou un la possibilité d'utiliser ViteJS.
+## 1. Démarrage
 
-## Apache/Nginx via .htaccess
-Pour Apache, vous pouvez utiliser le fichier `.htaccess` fourni dans le projet. Il redirige toutes les requêtes vers `index.html`, sauf si le fichier ou le répertoire existe. Pour Nginx, vous pouvez configurer le serveur pour qu'il redirige toutes les requêtes vers `index.html` de manière similaire.
-Définissez le répertoire racine de votre serveur web sur le dossier `front` du projet.
+### Option A : ViteJS (développement recommandé)
+1. Dans un terminal, lancez le serveur back-end :
+   ```bash
+   php -S localhost:8000 -t back
+   ```
+2. Dans un second terminal, lancez le serveur front :
+   ```bash
+   cd front
+   npm install
+   npm run dev
+   ```
+   *Vite relaie automatiquement les requêtes vers `http://localhost:8000` via son proxy.*
 
-## ViteJS
-Le seul prérequis pour utiliser ViteJS est d'avoir Node.js installé sur votre machine. Vous pouvez vérifier si Node.js est installé en exécutant la commande suivante dans votre terminal :
+### Option B : Apache / Nginx / XAMPP
+Placez le dossier du projet dans le répertoire de votre serveur web (ex: `htdocs` ou `www`).
+L'URL de l'API s'adapte automatiquement au sous-dossier (ex: `http://localhost/r310-project/back`).
 
-```bash
-node -v
+---
+
+## 2. Renseigner un module (`front/js/modules/<nom>/module.js`)
+
+Chaque fonctionnalité possède son propre dossier dans `front/js/modules/<nom>/` avec son fichier `module.js` :
+
+```javascript
+import Route from "../../router/route.js";
+import Module from "../module.js";
+
+export default class ModuleExemple extends Module {
+    constructor() {
+        super("ExempleModule"); // Génère automatiquement l'API window.apiHelper.exemple
+
+        // 1. Déclarer vos routes SPA
+        this.routes = [
+            new Route("/exemple", `${Route.LOCAL_MODULE_PATH_INDICATOR}/views/index.html`, ['navbar']),
+        ];
+
+        // 2. Déclarer vos requêtes API spécifiques au module
+        this.defineApi({
+            getStats() {
+                return this.get("stats");
+            }
+        });
+    }
+}
 ```
 
-Si c'est le cas, executez simplement la commande suivante dans le répertoire `front` du projet pour démarrer le serveur de développement ViteJS :
+---
 
-```bash
-npm run dev
+## 3. Exemple de vue HTML : récupérer l'utilisateur courant
+
+Créez un fichier dans `views/profil.html` au sein de votre module :
+
+```html
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Mon Profil</title>
+</head>
+<body>
+    <div id="profil-container">Chargement...</div>
+
+    <script type="module">
+        (async () => {
+            const container = document.getElementById("profil-container");
+
+            // Récupère l'utilisateur en session sans bloc try/catch obligatoire
+            const { data: user, ok, error } = await window.apiHelper.safe(() => 
+                window.apiHelper.get("auth/me")
+            );
+
+            if (!ok || !user) {
+                container.innerHTML = `<p>Non connecté (${error?.message || "Erreur"})</p>`;
+                return;
+            }
+
+            container.innerHTML = `
+                <h2>Bienvenue ${user.prenom} ${user.nom}</h2>
+                <p>Identifiant : ${user.id}</p>
+                <p>Rôle : ${user.role}</p>
+            `;
+        })();
+    </script>
+</body>
+</html>
 ```
 
-Si le serveur démarre correctement, vous devriez voir un message indiquant que le serveur est en cours d'exécution et l'URL à laquelle vous pouvez accéder à l'application. Par défaut, ViteJS utilise le port 5173 (par défaut), donc vous pouvez accéder à l'application en ouvrant votre navigateur et en visitant l'URL indiquée dans la console.
-![img.png](doc/vite-run.png)
+---
 
-## Fonctionnement technique du router
+## 4. Utilisation de `window.apiHelper`
 
-Comme dans le back en PHP, le routeur utilise la propriété du lien `pathname` de `window.location` ([Documentation MDN ici](https://developer.mozilla.org/fr/docs/Web/API/Window/location))
-L'objet `window.location` contient des informations sur l'URL actuelle de la page. La propriété `pathname` renvoie le chemin de l'URL, c'est-à-dire la partie de l'URL qui suit le nom de domaine et qui précède les paramètres de requête (query parameters) et le fragment (hash).
+Disponible globalement dans la console ou dans vos scripts :
 
-![img.png](doc/url-scheme.png)
-Ici, le routeur s'intéresse à la partie "path to the file", qu'il va lire et comparer avec les routes définies dans les modules. Si une correspondance est trouvée, le routeur va charger le module correspondant et afficher la vue associée.
+```javascript
+// Requête sur un module
+const data = await window.apiHelper.acteurs.get();
 
-> Dans le routeur, afin d'éviter tout souci de chemin relatif, les chemins des vues sont définis avec un indicateur spécial `Route.LOCAL_MODULE_PATH_INDICATOR`. Lors de la résolution de la vue, le routeur remplace cet indicateur par le chemin réel du module, garantissant ainsi que les ressources sont correctement localisées.
-> `Route.LOCAL_MODULE_PATH_INDICATOR` est disponible dans /front/js/router/route.js et est défini comme une constante statique de la classe Route.
+// Exécuter une requête métier indexée (GET /back/acteurs/query/1)
+const queryRes = await window.apiHelper.acteurs.query(1);
+
+// Appel direct ou sécurisé sans bloc try/catch
+const { data: user, ok } = await window.apiHelper.safe(() => window.apiHelper.get("auth/me"));
+
+// Redéfinir manuellement l'URL de l'API si nécessaire
+window.apiHelper.setBaseUrl("http://localhost:8000", true);
+```
+
+---
+
+## 5. Composants UI (Boutons, Icônes & Champs de texte)
+
+Une bibliothèque de composants CSS conformes aux designs SVG du projet et compatible avec [Bootstrap Icons](https://icons.getbootstrap.com/) est disponible dans `front/css/`.
+
+Consultez le guide complet des classes CSS et exemples d'intégration :
+👉 **[Documentation des composants UI](README-UI.md)** (ou dans [front/css/README.md](css/README.md)).

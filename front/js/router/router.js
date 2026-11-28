@@ -5,13 +5,13 @@ const app = document.getElementById("app");
 const ROOT_PATH = new URL("../../", import.meta.url).pathname.replace(/\/$/, "");
 
 document.addEventListener("DOMContentLoaded", async () => {
-    // 1. Attendre explicitement la fin du chargement de tous les modules
     await modulesReady;
 
     const router = new Router();
     window.router = router;
 
-    router.addRoute(new Route("/", "./views/main.html", []));
+    router.addRoute(new Route("/", "./views/main.html", ["navbar"]));
+    router.addRoute(new Route("/login", "./views/login.html", ["navbar"]));
 
     for (const route of moduleLoader.getAllRoutes()) {
         router.addRoute(route);
@@ -167,6 +167,12 @@ class Router {
                     }
 
                     app.innerHTML = doc.body.innerHTML;
+                    app.querySelectorAll("script").forEach((oldScript) => {
+                        const newScript = document.createElement("script");
+                        Array.from(oldScript.attributes).forEach((attr) => newScript.setAttribute(attr.name, attr.value));
+                        newScript.textContent = oldScript.textContent;
+                        oldScript.replaceWith(newScript);
+                    });
                 }
                 return;
             }
