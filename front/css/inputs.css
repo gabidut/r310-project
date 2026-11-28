@@ -1,0 +1,297 @@
+/* ==========================================================================
+   INPUTS & ZONES DE TEXTE (Conformes au pattern SVG Zones de texte.svg)
+   ========================================================================== */
+
+/* Conteneur de champ avec label et messages d'aide */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+/* Label du champ */
+.form-label {
+  display: block;
+  font-family: var(--font-base, system-ui, sans-serif);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-dark, #121211);
+  line-height: 1.2;
+}
+
+.form-label-sm {
+  font-size: 12px;
+}
+
+.form-label-lg {
+  font-size: 16px;
+}
+
+/* Champ de saisie (input text, email, password, etc.) */
+.form-control,
+.input-field {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--font-base, system-ui, sans-serif);
+  font-size: 14px;
+  color: var(--color-text-dark, #121211);
+  background-color: var(--color-input-bg, #E4E2E2);
+  border: 1px solid var(--color-border-default, #C5C5C5);
+  border-radius: var(--radius-md, 8px);
+  padding: 0 14px;
+  height: var(--height-md, 40px);
+  line-height: var(--height-md, 40px);
+  transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.form-control::placeholder,
+.input-field::placeholder {
+  color: var(--color-text-muted, #ACACAC);
+  opacity: 1;
+}
+
+/* État Hover */
+.form-control:hover:not(:disabled):not([readonly]),
+.input-field:hover:not(:disabled):not([readonly]) {
+  background-color: var(--color-input-bg-hover, #D5D4D4);
+  border-color: var(--color-border-default, #C5C5C5);
+}
+
+/* État Focus */
+.form-control:focus,
+.input-field:focus {
+  outline: none;
+  background-color: var(--color-input-bg, #E4E2E2);
+  border-color: var(--color-primary, #1E5250);
+  box-shadow: 0 0 0 1px var(--color-primary, #1E5250);
+}
+
+/* État Désactivé */
+.form-control:disabled,
+.form-control[disabled],
+.form-control.disabled,
+.input-field:disabled,
+.input-field[disabled],
+.input-field.disabled {
+  background-color: var(--color-input-bg, #E4E2E2);
+  border-color: var(--color-border-default, #C5C5C5);
+  color: var(--color-text-muted, #ACACAC);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* ==========================================================================
+   TAILLES DE CHAMPS
+   ========================================================================== */
+
+/* Petit champ (32px / rx 6px-7.5px) */
+.form-control-sm,
+.input-sm {
+  height: var(--height-sm, 32px);
+  line-height: var(--height-sm, 32px);
+  padding: 0 10px;
+  font-size: 13px;
+  border-radius: var(--radius-sm, 6px);
+}
+
+/* Moyen champ (40px / rx 8px) - Défaut */
+.form-control-md,
+.input-md {
+  height: var(--height-md, 40px);
+  line-height: var(--height-md, 40px);
+  padding: 0 14px;
+  font-size: 14px;
+  border-radius: var(--radius-md, 8px);
+}
+
+/* Grand champ (48px / rx 10px) */
+.form-control-lg,
+.input-lg {
+  height: var(--height-lg, 48px);
+  line-height: var(--height-lg, 48px);
+  padding: 0 16px;
+  font-size: 16px;
+  border-radius: var(--radius-lg, 10px);
+}
+
+/* Zone de texte multi-lignes (Textarea) */
+textarea.form-control,
+textarea.input-field {
+  height: auto;
+  min-height: 80px;
+  line-height: 1.5;
+  padding: 10px 14px;
+  resize: vertical;
+}
+
+/* ==========================================================================
+   ÉTATS DE VALIDATION (Erreur et Succès conformes au SVG)
+   ========================================================================== */
+
+/* État Erreur / Invalide (Bordure #D13627) */
+.form-control.is-invalid,
+.input-field.is-invalid,
+.has-error .form-control,
+.has-error .input-field {
+  border-color: var(--color-error-border, #D13627);
+  box-shadow: 0 0 0 1px var(--color-error-border, #D13627);
+}
+
+.form-control.is-invalid:focus,
+.input-field.is-invalid:focus,
+.has-error .form-control:focus,
+.has-error .input-field:focus {
+  border-color: var(--color-error-border, #D13627);
+  box-shadow: 0 0 0 1px var(--color-error-border, #D13627);
+}
+
+/* État Succès / Valide (Bordure #28B870) */
+.form-control.is-valid,
+.input-field.is-valid,
+.has-success .form-control,
+.has-success .input-field {
+  border-color: var(--color-success-border, #28B870);
+  box-shadow: 0 0 0 1px var(--color-success-border, #28B870);
+}
+
+.form-control.is-valid:focus,
+.input-field.is-valid:focus,
+.has-success .form-control:focus,
+.has-success .input-field:focus {
+  border-color: var(--color-success-border, #28B870);
+  box-shadow: 0 0 0 1px var(--color-success-border, #28B870);
+}
+
+/* Messages d'aide et retours de validation */
+.form-text {
+  font-size: 12px;
+  color: var(--color-text-muted, #ACACAC);
+  margin-top: 2px;
+}
+
+.invalid-feedback {
+  font-size: 12px;
+  color: var(--color-error-text, #C0281A);
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.valid-feedback {
+  font-size: 12px;
+  color: var(--color-success-text, #1EA05A);
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ==========================================================================
+   GROUPES D'ENTRÉE AVEC ICÔNES (Bootstrap Icons)
+   ========================================================================== */
+
+.input-icon-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.input-icon-left,
+.input-icon-right {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted, #ACACAC);
+  font-size: 16px;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.input-icon-left {
+  left: 12px;
+}
+
+.input-icon-right {
+  right: 12px;
+}
+
+/* Ajustement du padding du champ selon la présence d'icône */
+.input-icon-group:has(.input-icon-left) .form-control,
+.input-icon-group.has-icon-left .form-control,
+.input-icon-group:has(.input-icon-left) .input-field,
+.input-icon-group.has-icon-left .input-field {
+  padding-left: 38px;
+}
+
+.input-icon-group:has(.input-icon-right) .form-control,
+.input-icon-group.has-icon-right .form-control,
+.input-icon-group:has(.input-icon-right) .input-field,
+.input-icon-group.has-icon-right .input-field {
+  padding-right: 38px;
+}
+
+.input-icon-group.input-icon-group-sm .input-icon-left {
+  left: 10px;
+  font-size: 14px;
+}
+
+.input-icon-group.input-icon-group-sm .input-icon-right {
+  right: 10px;
+  font-size: 14px;
+}
+
+.input-icon-group.input-icon-group-sm:has(.input-icon-left) .form-control,
+.input-icon-group.input-icon-group-sm.has-icon-left .form-control {
+  padding-left: 32px;
+}
+
+.input-icon-group.input-icon-group-sm:has(.input-icon-right) .form-control,
+.input-icon-group.input-icon-group-sm.has-icon-right .form-control {
+  padding-right: 32px;
+}
+
+.input-icon-group.input-icon-group-lg .input-icon-left {
+  left: 14px;
+  font-size: 18px;
+}
+
+.input-icon-group.input-icon-group-lg .input-icon-right {
+  right: 14px;
+  font-size: 18px;
+}
+
+.input-icon-group.input-icon-group-lg:has(.input-icon-left) .form-control,
+.input-icon-group.input-icon-group-lg.has-icon-left .form-control {
+  padding-left: 42px;
+}
+
+.input-icon-group.input-icon-group-lg:has(.input-icon-right) .form-control,
+.input-icon-group.input-icon-group-lg.has-icon-right .form-control {
+  padding-right: 42px;
+}
+
+/* Icône interactive à l'intérieur du champ (bouton effacer, toggle mot de passe) */
+.input-icon-action {
+  pointer-events: auto;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: var(--color-text-muted, #ACACAC);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s ease;
+}
+
+.input-icon-action:hover {
+  color: var(--color-text-dark, #121211);
+}

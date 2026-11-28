@@ -13,8 +13,11 @@ L'architecture des fichiers est organisée de la manière suivante :
 
 ```
 r310-project/
-├── backend/
-│   ...Todo...
+├── back/                     # API REST JSON PHP 8.4+ (MRC)
+│   ├── INDEX.md              # 📖 Guide complet de développement
+│   ├── ESSENTIALS.md         # ⚡ Pense-bête & points essentiels
+│   ├── INIT_DB.md            # 🗄️ Guide d'installation MySQL & BDD
+│   └── AGENT.md              # 🤖 Spécifications techniques pour agents IA
 │
 ├── frontend/
 │   ...Todo...
@@ -25,6 +28,13 @@ r310-project/
 ├── .gitignore
 ├── README.md
 ```
+
+### Documentation Back-end
+
+- 📖 **Guide complet** : [back/INDEX.md](back/INDEX.md)
+- ⚡ **Points essentiels (Cheat sheet)** : [back/ESSENTIALS.md](back/ESSENTIALS.md)
+- 🗄️ **Initialisation et configuration de la base** : [back/INIT_DB.md](back/INIT_DB.md)
+- 🤖 **Spécifications pour agents IA** : [back/AGENT.md](back/AGENT.md)
 ### Gestion GIT
 
 Concernant la gestion git, l'organisation des branches s'effectue ainsi :

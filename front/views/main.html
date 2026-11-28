@@ -1,13 +1,299 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home</title>
+    <title>Accueil — Campus 3</title>
 </head>
 <body>
-    <p>Hello home</p>
+<div class="home-container">
+    <!-- Section Bienvenue -->
+    <header class="home-hero">
+        <h1 class="hero-title">Portail des Services Universitaires</h1>
+        <p class="hero-subtitle">Plateforme intégrée de gestion et de vie du Campus 3 — BUT Informatique</p>
+    </header>
+
+    <!-- Carte d'état utilisateur -->
+    <section class="user-status-card">
+        <div id="home-guest-state">
+            <div class="status-content">
+                <div class="status-icon"><i class="bi bi-person-lock"></i></div>
+                <div>
+                    <h2 class="status-title">Vous n'êtes pas connecté(e)</h2>
+                    <p class="status-desc">Connectez-vous avec vos identifiants universitaires pour accéder à vos services et modules personnalisés.</p>
+                </div>
+            </div>
+            <div class="status-actions">
+                <a href="/login" data-link class="btn btn-primary btn-md">
+                    <i class="bi bi-box-arrow-in-right"></i> Se connecter
+                </a>
+            </div>
+        </div>
+
+        <div id="home-user-state" style="display: none;">
+            <div class="status-content">
+                <div class="status-icon success"><i class="bi bi-person-check-fill"></i></div>
+                <div>
+                    <h2 class="status-title">
+                        Bonjour, <span id="home-user-name">...</span> !
+                    </h2>
+                    <p class="status-desc" id="home-user-email">...</p>
+                    <div id="home-user-roles" class="roles-tags-list"></div>
+                </div>
+            </div>
+            <div class="status-actions">
+                <button type="button" id="home-btn-logout" class="btn btn-secondary btn-sm">
+                    <i class="bi bi-box-arrow-right"></i> Déconnexion
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Grille des modules applicatifs -->
+    <section class="modules-overview">
+        <h2 class="section-title"><i class="bi bi-grid-fill"></i> Domaines & Modules</h2>
+        <div class="modules-grid">
+            <div class="module-card">
+                <div class="module-card-icon"><i class="bi bi-people-fill"></i></div>
+                <h3 class="module-card-title">Acteurs & RH</h3>
+                <p class="module-card-desc">Gestion des étudiants, enseignants, personnels administratifs et rôles.</p>
+            </div>
+            <div class="module-card">
+                <div class="module-card-icon"><i class="bi bi-cash-coin"></i></div>
+                <h3 class="module-card-title">Vacataires</h3>
+                <p class="module-card-desc">Suivi des dossiers vacataires, heures d'enseignement et paiements.</p>
+            </div>
+            <div class="module-card">
+                <div class="module-card-icon"><i class="bi bi-mortarboard-fill"></i></div>
+                <h3 class="module-card-title">Scolarité</h3>
+                <p class="module-card-desc">Gestion des promotions, groupes, matières, évaluations et jurys.</p>
+            </div>
+            <div class="module-card">
+                <div class="module-card-icon"><i class="bi bi-briefcase-fill"></i></div>
+                <h3 class="module-card-title">Apprentissage & Stages</h3>
+                <p class="module-card-desc">Suivi des contrats d'apprentissage, conventions et tuteurs d'entreprises.</p>
+            </div>
+            <div class="module-card">
+                <div class="module-card-icon"><i class="bi bi-journal-text"></i></div>
+                <h3 class="module-card-title">Décisions & PV</h3>
+                <p class="module-card-desc">Délibérations officielles, ordres du jour, comptes-rendus et votes.</p>
+            </div>
+            <div class="module-card">
+                <div class="module-card-icon"><i class="bi bi-heart-pulse-fill"></i></div>
+                <h3 class="module-card-title">Vie Étudiante & Santé</h3>
+                <p class="module-card-desc">Aménagements d'études, rendez-vous SSE, signalements et vie associative.</p>
+            </div>
+        </div>
+    </section>
+</div>
+
+<style>
+.home-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px 20px;
+}
+
+.home-hero {
+    margin-bottom: 28px;
+}
+
+.hero-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--color-primary, #1E5250);
+    margin: 0 0 6px 0;
+}
+
+.hero-subtitle {
+    font-size: 15px;
+    color: #6B7280;
+    margin: 0;
+}
+
+.user-status-card {
+    background: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    border-radius: var(--radius-lg, 12px);
+    padding: 24px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+    margin-bottom: 36px;
+}
+
+#home-guest-state, #home-user-state {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.status-content {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.status-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: #F3F4F6;
+    color: #4B5563;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+}
+
+.status-icon.success {
+    background-color: #EBF3F3;
+    color: var(--color-primary, #1E5250);
+}
+
+.status-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 4px 0;
+    color: var(--color-text-dark, #121211);
+}
+
+.status-desc {
+    font-size: 14px;
+    color: #6B7280;
+    margin: 0;
+}
+
+.roles-tags-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.role-tag {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background-color: #EBF3F3;
+    color: var(--color-primary, #1E5250);
+}
+
+.section-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--color-text-dark, #121211);
+    margin: 0 0 16px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.modules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 16px;
+}
+
+.module-card {
+    background: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    border-radius: var(--radius-md, 8px);
+    padding: 20px;
+    transition: all 0.15s ease;
+}
+
+.module-card:hover {
+    border-color: var(--color-primary, #1E5250);
+    box-shadow: 0 4px 12px rgba(30, 82, 80, 0.08);
+    transform: translateY(-2px);
+}
+
+.module-card-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-sm, 6px);
+    background-color: #EBF3F3;
+    color: var(--color-primary, #1E5250);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    margin-bottom: 12px;
+}
+
+.module-card-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 6px 0;
+    color: var(--color-text-dark, #121211);
+}
+
+.module-card-desc {
+    font-size: 13px;
+    color: #6B7280;
+    margin: 0;
+    line-height: 1.4;
+}
+</style>
+
+<script type="module">
+(function() {
+    const guestState = document.getElementById('home-guest-state');
+    const userState = document.getElementById('home-user-state');
+    const userNameEl = document.getElementById('home-user-name');
+    const userEmailEl = document.getElementById('home-user-email');
+    const userRolesEl = document.getElementById('home-user-roles');
+    const btnLogout = document.getElementById('home-btn-logout');
+
+    function renderUser(user) {
+        if (!guestState || !userState) return;
+
+        if (user) {
+            guestState.style.display = 'none';
+            userState.style.display = 'flex';
+
+            const fullName = `${user.prenom || user.PER_PRENOM || ''} ${user.nom || user.PER_NOM || ''}`.trim();
+            if (userNameEl) userNameEl.textContent = fullName || 'Utilisateur';
+            if (userEmailEl) userEmailEl.textContent = user.email || user.PER_MAIL || '';
+
+            if (userRolesEl) {
+                userRolesEl.innerHTML = '';
+                const roles = Array.isArray(user.roles) ? user.roles : [];
+                if (roles.length === 0) {
+                    const tag = document.createElement('span');
+                    tag.className = 'role-tag';
+                    tag.textContent = 'Utilisateur';
+                    userRolesEl.appendChild(tag);
+                } else {
+                    roles.forEach((r) => {
+                        const tag = document.createElement('span');
+                        tag.className = 'role-tag';
+                        tag.textContent = r.ROL_LIBELLE || r.ROL_ID || String(r);
+                        userRolesEl.appendChild(tag);
+                    });
+                }
+            }
+        } else {
+            guestState.style.display = 'flex';
+            userState.style.display = 'none';
+        }
+    }
+
+    // Écoute les changements d'état
+    if (window.apiHelper?.onAuthChange) {
+        window.apiHelper.onAuthChange(renderUser);
+    } else {
+        renderUser(window.apiHelper?.getUser());
+    }
+
+    if (btnLogout) {
+        btnLogout.addEventListener('click', async () => {
+            await window.apiHelper?.logout();
+            renderUser(null);
+        });
+    }
+})();
+</script>
 </body>
 </html>

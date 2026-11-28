@@ -1,14 +1,243 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta position="navbar" />
-
-    <title>unused</title>
+    <title>Navbar</title>
 </head>
 <body>
-<div style="width: 100%;height: 50px; background-color: red;">
-    What a navbar!!!
-</div>
-</body>
+<header class="app-navbar">
+    <div class="navbar-container">
+        <!-- Logo / Marque -->
+        <a href="/" data-link class="navbar-brand">
+            <span class="brand-icon"><i class="bi bi-buildings"></i></span>
+            <span class="brand-text">Campus 3</span>
+            <span class="brand-badge">R310</span>
+        </a>
 
+        <!-- Liens de navigation centraux -->
+        <nav class="navbar-links">
+            <a href="/" data-link class="nav-link active">
+                <i class="bi bi-house-door"></i> Accueil
+            </a>
+        </nav>
+
+        <!-- Espace Authentification -->
+        <div id="navbar-auth-area" class="navbar-auth">
+            <!-- Non connecté -->
+            <div id="nav-guest-view" class="nav-auth-item">
+                <a href="/login" data-link class="btn btn-primary btn-sm">
+                    <i class="bi bi-box-arrow-in-right"></i>
+                    <span>Connexion</span>
+                </a>
+            </div>
+
+            <!-- Connecté (masqué par défaut) -->
+            <div id="nav-user-view" class="nav-auth-item" style="display: none;">
+                <div class="nav-user-badge">
+                    <div class="user-avatar-circle">
+                        <i class="bi bi-person-fill"></i>
+                    </div>
+                    <div class="user-info-text">
+                        <span id="nav-user-fullname" class="user-name">Chargement...</span>
+                        <span id="nav-user-role" class="user-role-badge">Membre</span>
+                    </div>
+                </div>
+                <button type="button" id="nav-logout-btn" class="btn btn-ghost btn-sm" title="Se déconnecter">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span class="logout-label">Déconnexion</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<style>
+.app-navbar {
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #E5E7EB;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+}
+
+.navbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--color-primary, #1E5250);
+}
+
+.brand-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background-color: var(--color-primary, #1E5250);
+    color: #FFFFFF;
+    border-radius: var(--radius-sm, 6px);
+    font-size: 16px;
+}
+
+.brand-text {
+    letter-spacing: -0.2px;
+}
+
+.brand-badge {
+    font-size: 11px;
+    background-color: #EBF3F3;
+    color: var(--color-primary, #1E5250);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.navbar-links {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    color: #4B5563;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: var(--radius-md, 8px);
+    transition: all 0.15s ease;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--color-primary, #1E5250);
+    background-color: #F3F4F6;
+}
+
+.navbar-auth {
+    display: flex;
+    align-items: center;
+}
+
+.nav-auth-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nav-user-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 10px;
+    background-color: #F8F9FA;
+    border: 1px solid #E5E7EB;
+    border-radius: 20px;
+}
+
+.user-avatar-circle {
+    width: 26px;
+    height: 26px;
+    background-color: var(--color-primary, #1E5250);
+    color: #FFFFFF;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+}
+
+.user-info-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
+
+.user-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-text-dark, #121211);
+}
+
+.user-role-badge {
+    font-size: 10px;
+    color: #6B7280;
+}
+
+@media (max-width: 640px) {
+    .logout-label {
+        display: none;
+    }
+    .user-info-text {
+        display: none;
+    }
+}
+</style>
+
+<script type="module">
+(function() {
+    const guestView = document.getElementById('nav-guest-view');
+    const userView = document.getElementById('nav-user-view');
+    const userNameEl = document.getElementById('nav-user-fullname');
+    const userRoleEl = document.getElementById('nav-user-role');
+    const logoutBtn = document.getElementById('nav-logout-btn');
+
+    function updateNavState(user) {
+        if (!guestView || !userView) return;
+
+        if (user) {
+            guestView.style.display = 'none';
+            userView.style.display = 'flex';
+
+            const fullName = `${user.prenom || user.PER_PRENOM || ''} ${user.nom || user.PER_NOM || ''}`.trim() || user.email || user.PER_MAIL || 'Utilisateur';
+            if (userNameEl) userNameEl.textContent = fullName;
+
+            // Déduction du rôle principal
+            let roleLabel = 'Utilisateur';
+            if (Array.isArray(user.roles) && user.roles.length > 0) {
+                roleLabel = user.roles[0].ROL_LIBELLE || user.roles[0];
+            }
+            if (userRoleEl) userRoleEl.textContent = roleLabel;
+        } else {
+            guestView.style.display = 'flex';
+            userView.style.display = 'none';
+        }
+    }
+
+    // Écoute les changements d'authentification en direct
+    if (window.apiHelper?.onAuthChange) {
+        window.apiHelper.onAuthChange(updateNavState);
+    } else {
+        updateNavState(window.apiHelper?.getUser());
+    }
+
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', async () => {
+            await window.apiHelper?.logout();
+            if (window.router?.navigateTo) {
+                window.router.navigateTo('/login');
+            } else {
+                window.location.href = '/login';
+            }
+        });
+    }
+})();
+</script>
+</body>
 </html>
