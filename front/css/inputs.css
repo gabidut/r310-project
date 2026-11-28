@@ -53,8 +53,8 @@
 }
 
 /* État Hover */
-.form-control:hover:not(:disabled):not([readonly]),
-.input-field:hover:not(:disabled):not([readonly]) {
+.form-control:hover:not(:disabled, [readonly]),
+.input-field:hover:not(:disabled, [readonly]) {
   background-color: var(--color-input-bg-hover, #D5D4D4);
   border-color: var(--color-border-default, #C5C5C5);
 }

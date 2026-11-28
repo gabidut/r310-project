@@ -1,7 +1,7 @@
-@import "bootstrap-icons/font/bootstrap-icons.css";
-@import "./variables.css";
-@import "./buttons.css";
-@import "./inputs.css";
+@import url("bootstrap-icons/font/bootstrap-icons.css");
+@import url("./variables.css");
+@import url("./buttons.css");
+@import url("./inputs.css");
 
 body {
     margin: 0;
